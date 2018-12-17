@@ -31,7 +31,7 @@ public class UserController {
                          Model model) {
         User user = userService.findByNameAndPassword(name, password);
         model.addAttribute("u", user);//user传到u,
-        return "usermanage";//html名
+        return "index";//html名
     }
 
     /**
