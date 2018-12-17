@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Venue Order</title>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- -->
+    <script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script>$(document).ready(function(c) {
+        $('.alert-close').on('click', function(c){
+            $('.message').fadeOut('slow', function(c){
+                $('.message').remove();
+            });
+        });
+    });
+    function frmSub(){
+        document.loginform.submit();
+    }
+    </script>
+</head>
+<body>
+<!-- contact-form -->
+<div class="message warning">
+    <div class="inset">
+        <div class="login-head">
+            <h1>VenueOrder Platform</h1>
+
+            <div class="alert-close"> </div>
+        </div>
+        <div class="panel-body">
+
+        <form name="loginform">
+            <div class="form-group">
+                <label>Enter Name</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="form-group">
+                <label>Enter Password</label>
+                <input class="form-control" type="password" >
+            </div>
+            <div class="form-group">
+                <label>Repeat your Password </label>
+                <input class="form-control" type="password">
+            </div>
+            <button type="submit" class="btn btn-danger " ><a href="index.html"> Register Now</a></button>
+
+
+        </form>
+    </div>
+
+    </div>
+</div>
+
+<div class="clear"> </div>
+
+
+</body>
+</html>
+

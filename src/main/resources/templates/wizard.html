@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue order</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script>
+        function postform(obj){
+            var temp;
+            var obj2=document.getElementsByName("optionsRadiosinline");
+            for(var i=0;i<obj2.length;i++){
+                if(obj2[i].checked==true){
+                    temp=1;
+                    alert("提交成功!");
+                    break;
+                }else{
+                    temp=0;
+                }
+            }
+            if(temp==0){alert("请至少选择一个");return false;}
+        }
+        function sure(){
+            var x;
+            var r=confirm("是否确定提交？");
+
+        }
+    </script>
+
+</head>
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Venue Order</a>
+        </div>
+
+        <div class="header-right">
+
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+        </div>
+    </nav>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="assets/img/user.png" class="img-thumbnail" />
+
+                        <div class="inner-text">
+                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                            <br />
+                        </div>
+                    </div>
+
+                </li>
+
+
+                <li>
+                    <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                </li>
+                <li>
+                    <a class="active-menu" href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
+                </li>
+
+                <li>
+                    <a href="order.html"><i class="fa fa-square-o "></i>My Order</a>
+                </li>
+                <li>
+                    <a href="news.html"><i class="fa fa-coffee "></i>News Center</a>
+                </li>
+                <li>
+                    <a href="message.html"><i class="fa fa-edit "></i>Message Board</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">THE VENUE</h1>
+                    <h1 class="page-subhead-line">The available venues are listed as follows.</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="assets/img/portfolio/hall1.jpg" class="img-responsive " alt="" />
+                </div>
+                <div class="col-md-7">
+                    <div class="container">
+                        <h2>大礼堂</h2>
+                        <p>地址:</p>
+                        <p>联系电话：</p>
+                        <p>租金：</p>
+                        <p>
+                        <form class="form-inline" onsubmit="return postform(this)" role="form" method="POST">
+
+
+                        预订时间：
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadiosinline" disabled>8:00-12:00
+                                &nbsp;
+                                <input type="radio" name="optionsRadiosinline">13:00-17:00
+                                &nbsp;
+                                <input type="radio" name="optionsRadiosinline">18:00-22:00
+                            </label>
+                        </div>
+                        <br/>
+                        <br/>
+                        <button type="submit" class="btn btn-sm btn-success" onclick="sure()">提交</button>&nbsp;&nbsp;
+                        <a href="venue.html" class="btn btn-sm btn-default">返回</a>
+                    </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <br/><br/>
+
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">场馆介绍</h3>
+                    </div>
+                    <div class="panel-body">
+                        This is venue introduction.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<div id="footer-sec" align="center">
+    Copyright &copy; 2018 VenueOrder.
+</div>
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="assets/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="assets/js/jquery.prettyPhoto.js"></script>
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="assets/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="assets/js/galleryCustom.js"></script>
+</body>
+</html>

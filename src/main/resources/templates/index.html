@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue order</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+       <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet" />
+    <link href="../static/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<script></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Venue Order</a>
+            </div>
+
+            <div class="header-right">
+
+                <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="../static/img/user.png" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                            <br />
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+
+                     <li>
+                        <a href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                    </li>
+                      <li>
+                        <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
+                    </li>
+                   
+                    <li>
+                        <a href="order.html"><i class="fa fa-square-o "></i>My Order</a>
+                    </li>
+                    <li>
+                        <a href="news.html"><i class="fa fa-coffee "></i>News Center</a>
+                    </li>
+                    <li>
+                        <a href="message.html"><i class="fa fa-edit "></i>Message Board</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">DASHBOARD</h1>
+                        <h1 class="page-subhead-line">Welcome to the VenueOrder Platform! </h1>
+
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="main-box mb-red">
+                            <a href="form.html">
+                                <i class="fa fa-desktop fa-5x"></i>
+                                <h5>Modify My Profile</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-pink">
+                            <a href="venue.html">
+                                <i class="fa fa-dollar fa-5x"></i>
+                                <h5>Booking Now</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="main-box mb-dull">
+                            <a href="order.html">
+                                <i class="fa fa-square-o fa-5x"></i>
+                                <h5>MANAGE MY ORDER</h5>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /. ROW  -->
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <hr />
+
+                        <div class="panel panel-default">
+
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- 轮播（Carousel）指标 -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+                                <!-- 轮播（Carousel）项目 -->
+                                <div class="carousel-inner" >
+                                    <div class="item active" style="width:600px;height:300px" >
+                                        <a href="blank.html"><img src="../static/img/slideshow/notice4.jpg" width=100% height=100% alt="First slide"/></a>
+                                        <div class="carousel-caption">1</div>
+                                    </div>
+                                    <div class="item" style="width:600px;height:300px" >
+                                        <a href="blank.html"><img src="../static/img/slideshow/notice5.jpg" width=100% height=100% alt="Second slide"></a>/
+                                        <div class="carousel-caption">2</div>
+                                    </div>
+                                    <div class="item" style="width:600px;height:300px" >
+                                        <a href="blank.html"><img src="../static/img/slideshow/notice6.jpg" width=100% height=100% alt="Third slide"></a>
+                                        <div class="carousel-caption">3</div>
+                                    </div>
+                                </div>
+                                <!-- 轮播（Carousel）导航 -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        </div></div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <i class="fa fa-bell fa-fw"></i>Notifications Panel
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="list-group">
+
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-twitter fa-fw"></i>3 New Followers
+                                        <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-envelope fa-fw"></i>Message Sent
+                                        <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-tasks fa-fw"></i>New Task
+                                        <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-upload fa-fw"></i>Server Rebooted
+                                        <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
+                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
+                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                    </a>
+
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
+                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
+                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    </span>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-shopping-cart fa-fw"></i>New Order Placed
+                                        <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    </span>
+                                    </a>
+                                </div>
+                                <!-- /.list-group -->
+                                <a href="#" class="btn btn-info btn-block">View All Alerts</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <div id="footer-sec" align="center">
+        Copyright &copy; 2018 VenueOrder.
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../static/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../static/js/bootstrap.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../static/js/jquery.metisMenu.js"></script>
+       <!-- CUSTOM SCRIPTS -->
+    <script src="../static/js/custom.js"></script>
+    
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Venue Order</title>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- -->
+    <script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script>$(document).ready(function(c) {
+        $('.alert-close').on('click', function(c){
+            $('.message').fadeOut('slow', function(c){
+                $('.message').remove();
+            });
+        });
+    });
+    function frmSub(){
+        document.loginform.submit();
+    }
+    </script>
+</head>
+<body>
+
+<!-- contact-form -->
+<div class="message warning">
+    <div class="inset">
+        <div class="login-head">
+            <h1>VenueOrder Platform</h1>
+
+            <div class="alert-close"> </div>
+        </div>
+
+        <form role="form" name="loginform">
+            <h3 class="form-group">
+                <h3><p class="text-primary" >Please choose your identity first.</p></h3><br/><br/>
+                <div class="row">
+                <div class="col-md-6">
+                    <div class="main-box mb-blue">
+                        <a href="login.html">
+                            <i class="fa fa-user fa-5x"></i>
+                            <h5>I'm User.</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="main-box mb-blue">
+                        <a href="index-admin.html">
+                            <i class="fa fa-key fa-5x"></i>
+                            <h5>I'm Admin.</h5>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+                <br/><br/>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="clear"> </div>
+
+
+</body>
+</html>

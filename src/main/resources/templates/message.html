@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue order</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="assets/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="assets/js/myJs.js"></script>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        function sure(){
+            var x;
+            var r=confirm("是否确定提交？");
+            if (r==true){
+                alert("提交成功!");
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Venue Order</a>
+        </div>
+
+        <div class="header-right">
+
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+        </div>
+    </nav>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="assets/img/user.png" class="img-thumbnail" />
+
+                        <div class="inner-text">
+                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                            <br />
+                        </div>
+                    </div>
+
+                </li>
+
+
+                <li>
+                    <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                </li>
+
+                <li>
+                    <a  href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                </li>
+                <li>
+                    <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
+                </li>
+
+                <li>
+                    <a href="order.html"><i class="fa fa-square-o "></i>My Order</a>
+                </li>
+                <li>
+                    <a href="news.html"><i class="fa fa-coffee "></i>News Center</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="message.html"><i class="fa fa-edit "></i>Message Board</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">MY INFOMATION</h1>
+                    <h1 class="page-subhead-line">Fill in the form below to modify your self infomation. </h1>
+
+                </div>
+            </div>
+
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            PROFILE
+                        </div>
+                        <div class="panel-body form-horizontal">
+                            <br role="form" >
+                            <div class="row">
+                                <div class="col-md-offset-9">
+                                    <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+                                        修改个人资料
+                                    </button>
+                                    <!-- 模态框（Modal） -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        PROFILE
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal" role="form" >
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Name</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control col-sm-6" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Sex</label>
+                                                            <div class="radio col-sm-6">
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="optionsRadios" id="optionsRadios6" value="male" checked>Male
+                                                                    </label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label>
+                                                                        <input type="radio" name="optionsRadios" id="optionsRadios5" value="female">Female
+                                                                    </label>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Phone number</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control" id="phone" onblur="isMobile(this.value)">
+                                                            </div>
+                                                        </div>
+
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Email</label>
+                                                            <form name="myForm" >
+
+                                                                <div class="col-sm-6">
+                                                                    <input type="email" class="form-control" id="email" onblur="isEmail()" >
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Self Introduction</label>
+                                                            <div class="col-sm-6">
+                                                                <textarea class="form-control" rows="3" placeholder="Please introduce yourself"></textarea>
+                                                                <p class="help-block">Please text less than 100 words.</p>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                    </form>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                        </button>
+                                                        <button type="submit" class="btn btn-primary" onclick="sure()">
+                                                            提交更改
+                                                        </button>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal -->
+                                        </div>
+                                    </div>
+                                </div></div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Sex</label>
+                                    <div class="radio col-sm-9">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="male" checked>Male
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="female" disabled>Female
+                                        </label>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Phone number</label>
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Email</label>
+                                    <form name="myForm" >
+                                        <div class="col-sm-9">
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Self Introduction</label>
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-sec" align="center">
+            Copyright &copy; 2018 VenueOrder.
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/questionnaire?useSSL=false&useUnicode=true&characterEncoding=utf8
+#    data-username: root
+#    data-password: 123456
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/j2ee?serverTimezone=CTT&useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 19990304glr
+
+  jpa:
+#    在控制台显示sql
+    show-sql: true
+    hibernate:
+#      更新或创建数据库结构
+      ddl-auto: update
+
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
