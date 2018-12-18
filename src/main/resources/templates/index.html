@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
 
-    <!-- BOOTSTRAP STYLES-->
-    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
-    <link href="../static/css/font-awesome.css" rel="stylesheet" />
-       <!--CUSTOM BASIC STYLES-->
-    <link href="../static/css/basic.css" rel="stylesheet" />
-    <link href="../static/css/basic.css" rel="stylesheet" />
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
     <!--CUSTOM MAIN STYLES-->
-    <link href="../static/css/custom.css" rel="stylesheet" />
+    <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
     <!-- GOOGLE FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 <script></script>
@@ -30,14 +29,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Venue Order</a>
+                <a class="navbar-brand" href="index.html" th:href="@{index.html}">Venue Order</a>
             </div>
 
             <div class="header-right">
 
-                <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <a href="message-task.html" th:href="@{message-task.html}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="index.html" th:href="@{index.html}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+                <a href="login.html" th:href="@{/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
             </div>
@@ -48,10 +47,13 @@
                 <ul class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
-                            <img src="../static/img/user.png" class="img-thumbnail" />
+                            <img th:src="@{img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
-                            <div class="inner-text">
-                                Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                            <div class="inner-text" th:each="us: ${u}">
+                                Welcome, <br />
+
+                                <p th:text="${us.name}">name</p>
+
                             <br />
                             </div>
                         </div>
@@ -64,7 +66,7 @@
                     </li>
 
                      <li>
-                        <a href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                        <a href="form.html"><i class="fa fa-desktop "></i>My Information </a>
                     </li>
                       <li>
                         <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
@@ -192,27 +194,6 @@
                                     <a href="#" class="list-group-item">
                                         <i class="fa fa-upload fa-fw"></i>Server Rebooted
                                         <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                    </a>
-
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                        <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                        <span class="pull-right text-muted small"><em>10:57 AM</em>
                                     </span>
                                     </a>
                                     <a href="#" class="list-group-item">

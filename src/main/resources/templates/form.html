@@ -1,24 +1,24 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
-
     <!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
     <!--CUSTOM BASIC STYLES-->
-    <link href="assets/css/basic.css" rel="stylesheet" />
+    <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
     <!--CUSTOM MAIN STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
+    <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
     <!-- GOOGLE FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-<script type="text/javascript" src="assets/js/myJs.js"></script>
+<script type="text/javascript" src="../static/js/myJs.js"></script>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <script>
         function isChinese(obj){
             var reg=/^[\u0391-\uFFE5]+$/;
@@ -92,7 +92,7 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="assets/img/user.png" class="img-thumbnail" />
+                        <img src="../static/img/user.png" class="img-thumbnail" />
 
                         <div class="inner-text">
                             Welcome, <br />Jhon Deo Alex!                    <!--request-->
@@ -108,7 +108,7 @@
                 </li>
 
                 <li>
-                    <a class="active-menu" href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                    <a class="active-menu" href="form.html"><i class="fa fa-desktop "></i>My Information </a>
                 </li>
                 <li>
                     <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
@@ -134,7 +134,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-head-line">MY INFOMATION</h1>
-                    <h1 class="page-subhead-line">Fill in the form below to modify your self infomation. </h1>
+                    <h1 class="page-subhead-line">Fill in the form below to modify your self information. </h1>
 
                 </div>
             </div>
@@ -170,7 +170,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Name</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control col-sm-6" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
+                                                                <input type="text" class="form-control col-sm-6" name="name" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
                                                             </div>
                                                         </div>
                                                         <br/>
@@ -179,12 +179,12 @@
                                                             <div class="radio col-sm-6">
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <input type="radio" name="optionsRadios" id="optionsRadios6" value="male" checked>Male
+                                                                        <input type="radio" name="sex" id="optionsRadios6" value="male" checked>Male
                                                                     </label>
                                                                 </div>
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <input type="radio" name="optionsRadios" id="optionsRadios5" value="female">Female
+                                                                        <input type="radio" name="sex" id="optionsRadios5" value="female">Female
                                                                     </label>
                                                                 </div>
 
@@ -194,7 +194,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Phone number</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control" id="phone" onblur="isMobile(this.value)">
+                                                                <input type="text" class="form-control" name="phoneNumber" id="phone" onblur="isMobile(this.value)">
                                                             </div>
                                                         </div>
 
@@ -204,7 +204,7 @@
                                                             <form name="myForm" >
 
                                                                 <div class="col-sm-6">
-                                                                    <input type="email" class="form-control" id="email" onblur="isEmail()" >
+                                                                    <input type="email" class="form-control" name="email" id="email" onblur="isEmail()" >
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -213,7 +213,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Self Introduction</label>
                                                             <div class="col-sm-6">
-                                                                <textarea class="form-control" rows="3" placeholder="Please introduce yourself"></textarea>
+                                                                <textarea class="form-control" name="introduction" rows="3" placeholder="Please introduce yourself"></textarea>
                                                                 <p class="help-block">Please text less than 100 words.</p>
                                                             </div>
                                                         </div>
@@ -233,44 +233,41 @@
                                 </div>
                                 </div></div>
                                 <div class="row">
-                            <div class="form-group">
+                            <div class="form-group" th:each="us: ${u}">
                                 <label class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-9">
-
+                                    <p th:text="${us.name}"></p>
                                 </div>
                             </div>
 
                             <br/>
-                            <div class="form-group">
+                            <div class="form-group" th:each="us: ${u}">
                                 <label class="col-sm-2 control-label">Sex</label>
-                                <div class="radio col-sm-9">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="male" checked>Male
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input type="radio" name="optionsRadios" id="optionsRadios4" value="female" disabled>Female
-                                    </label>
+                                <div class="col-sm-9">
+                                    <p th:text="${us.sex}"></p>
                                 </div>
                             </div>
                             <br/>
-                            <div class="form-group">
+                            <div class="form-group" th:each="us: ${u}">
                                 <label class="col-sm-2 control-label">Phone number</label>
                                 <div class="col-sm-9">
-
+                                    <p th:text="${us.phoneNumber}"></p>
                                 </div>
                             </div>
                             <br/>
-                            <div class="form-group">
+                            <div class="form-group" th:each="us: ${u}">
                                 <label class="col-sm-2 control-label">Email</label>
                                 <form name="myForm" >
                                 <div class="col-sm-9">
+                                    <p th:text="${us.email}"></p>
                                 </div>
                                 </form>
                             </div>
                             <br/>
-                            <div class="form-group">
+                            <div class="form-group" th:each="us: ${u}">
                                 <label class="col-sm-2 control-label">Self Introduction</label>
                                 <div class="col-sm-9">
-
+                                    <p th:text="${us.introduction}"></p>
                                 </div>
                             </div>
                             <br/>
@@ -281,10 +278,10 @@
         </div>
         </div>
     </div>
+
+</div>
     <div id="footer-sec" align="center">
         Copyright &copy; 2018 VenueOrder.
     </div>
-</div>
-
 </body>
 </html>

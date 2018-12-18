@@ -1,14 +1,22 @@
 <!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>Venue Order</title>
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- -->
     <script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
     <script>$(document).ready(function(c) {
         $('.alert-close').on('click', function(c){
             $('.message').fadeOut('slow', function(c){
@@ -35,15 +43,11 @@
         <form name="loginform">
             <div class="form-group">
                 <label>Enter Name</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" name="name">
             </div>
             <div class="form-group">
                 <label>Enter Password</label>
-                <input class="form-control" type="password" >
-            </div>
-            <div class="form-group">
-                <label>Repeat your Password </label>
-                <input class="form-control" type="password">
+                <input class="form-control" type="password" name="password">
             </div>
             <button type="submit" class="btn btn-danger " ><a href="index.html"> Register Now</a></button>
 

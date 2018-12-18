@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
 
-    <!-- BOOTSTRAP STYLES-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
     <!--CUSTOM BASIC STYLES-->
-    <link href="assets/css/basic.css" rel="stylesheet" />
+    <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
     <!--CUSTOM MAIN STYLES-->
-    <link href="assets/css/custom.css" rel="stylesheet" />
+    <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- GOOGLE FONTS-->
     <script>
@@ -62,7 +61,7 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="assets/img/user.png" class="img-thumbnail" />
+                        <img src="../static/img/user.png" class="img-thumbnail" />
 
                         <div class="inner-text">
                             Welcome, <br />Jhon Deo Alex!                    <!--request-->
@@ -128,28 +127,28 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Venue Name</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control col-sm-6" id="name" >
+                                                <input type="text" class="form-control col-sm-6" name="name" id="name" >
                                             </div>
                                         </div>
                                         <br/>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Phone number</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="phone" >
+                                                <input type="text" class="form-control" name="phoneNumber" id="phone" >
                                             </div>
                                         </div>
                                         <br/>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Price</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="price" >
+                                                <input type="text" class="form-control" name="price" id="price" >
                                             </div>
                                         </div>
                                         <br/>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Venue Introduction</label>
                                             <div class="col-sm-6">
-                                                <textarea class="form-control" rows="6" ></textarea>
+                                                <textarea class="form-control" name="introduction" rows="6" ></textarea>
                                             </div>
                                         </div>
                                         <br/>
@@ -175,14 +174,27 @@
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                             <tr>
-                                <th>No.</th>
                                 <th>Venue ID</th>
                                 <th>Venue Name</th>
+                                <th>Address</th>
                                 <th>Price</th>
                                 <th>Phone</th>
                                 <th>To Do</th>
                             </tr>
                             </thead>
+                            <tbody id="tbody-categoris">
+                            <tr th:each="ve: ${v}">
+                                <td th:text="${ve.id}"></td>
+                                <td th:text="${ve.name"></td>
+                                <td th:text="${ve.address}"></td>
+                                <td th:text="${ve.price}"></td>
+                                <td th:text="${ve.phoneNumber}"></td>
+                                <td>
+                                    <a target="_blank" class="btn btn-info "  href="wizard.html"  onclick="window.open(blank.html)">Edit</a>&nbsp;&nbsp;
+                                    <button class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</button>
+                                </td>
+                            </tr>
+                            </tbody>
                             <tbody>
                             <tr >
                                 <td>1</td>
@@ -226,13 +238,13 @@
 <!-- /. FOOTER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<script src="assets/js/jquery-1.10.2.js"></script>
+<script src="../static/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<script src="assets/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.js"></script>
 <!-- METISMENU SCRIPTS -->
-<script src="assets/js/jquery.metisMenu.js"></script>
+<script src="../static/js/jquery.metisMenu.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="assets/js/custom.js"></script>
+<script src="../static/js/custom.js"></script>
 
 
 
