@@ -78,6 +78,5 @@ public class OrderController {
     }
 
    /*修改订单信息*/
-    /*修改审核状态 passOrderStatus refuOrderStatus 留言类同*/
 
 }
