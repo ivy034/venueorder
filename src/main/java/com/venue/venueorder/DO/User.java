@@ -32,7 +32,7 @@ public class User {
     private String password;
 
     /* 手机号 */
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     /* 邮箱 */

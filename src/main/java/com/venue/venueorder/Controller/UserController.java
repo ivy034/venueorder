@@ -41,7 +41,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/deleteUser")
-    public Object deleteUser(int id) {
+    public Object deleteUser(@RequestParam("id")Integer id) {
         User user = userService.findOne(id);
         if (null == user) {
             return "删除用户失败:" + id + "没找到该用户";
@@ -54,29 +54,22 @@ public class UserController {
     /**
      * 添加用户
      *
-     * @param id
-     * @param email
      * @param name
+     * @param password
      * @return
      */
-    @RequestMapping(value = "/adduser")
-    public Object addUser(Integer id, String email, String phoneNumber, String name, String password) {
+    @RequestMapping(value = "/register")
+    public String addUser(@RequestParam("name") String name,@RequestParam("password") String password) {
 
-        User tempUser = userService.findOne(id);
-        if (null == tempUser) {
-            tempUser = new User();
-            tempUser.setId(id);//创建新id
+        List<User> tempUser = userService.findByName(name);
+        if(tempUser==null)
+        {   User user=new User();
+            user.setPhoneNumber(name);
+            user.setPassword(password);
+        User resultUser = userService.createUser(user);
+        return "注册成功！";
         }
-        tempUser.setEmail(email);
-        tempUser.setPhoneNumber(phoneNumber);
-        tempUser.setPassword(password);
-        tempUser.setName(name);
-        User resultUser = userService.createUser(tempUser);
-        if (null == resultUser) {
-            return "新增用户失败";
-        } else {
-            return "新增用户:" + resultUser.getName();
-        }
+        return "注册失败，该用户名已被占用！";
     }
 // 条件查询
 
@@ -94,4 +87,6 @@ public class UserController {
             return "没找到符合要求的用户";
         }
     }
+
+    /*修改用户信息*/
 }
