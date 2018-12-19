@@ -30,9 +30,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
         </div>
     </nav>
@@ -42,10 +42,13 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}"  src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -98,19 +101,43 @@
                                 <th>Title</th>
                                 <th>Release Time</th>
                                 <th>Announcer</th>
+                                <th>TO DO</th>
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="ne: ${n}">
+                            <tr th:each="ne: ${n_list}">
                                 <td th:text="${ne.id}"></td>
                                 <td th:text="${ne.title}"></td>
                                 <td th:text="${ne.annoucetime}"></td>
                                 <td th:text="${ne.author}"></td>
+                                <td>
+
+                                    <button class="submit" data-toggle="modal" data-target="#myModal">
+                                        查看详情
+                                    </button>
+                                    <!-- 模态框（Modal） -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        NEWS
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                            <label class="col-sm-2 control-label">Content</label><br/>
+                                                            <p th:text="${ne.content}"></p>
+                                                        <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
 
-                            </tbody>
-
-                            <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>
@@ -139,20 +166,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <hr />
-
                 </div>
             </div>
 
-
-
-
-        </div>
-        <!-- /. PAGE INNER  -->
-    </div>
-    <!-- /. PAGE WRAPPER  -->
+</div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
-<!-- /. WRAPPER  -->
 <div id="footer-sec" align="center">
     Copyright &copy; 2018 VenueOrder.
 </div>

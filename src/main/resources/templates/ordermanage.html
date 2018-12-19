@@ -23,7 +23,23 @@
             if (r==true){
                 alert("删除成功!");
             }
-        }</script>
+        }
+        function agree(){
+            var x;
+            var r=confirm("是否确定通过？");
+            if (r==true){
+                alert("提交成功!");
+            }
+        }
+        function refuse(){
+            var x;
+            var r=confirm("是否确定拒绝？");
+            if (r==true){
+                alert("提交成功!");
+            }
+        }
+
+    </script>
 
 </head>
 
@@ -42,9 +58,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="messagemanage.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
         </div>
@@ -55,10 +71,13 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -118,7 +137,7 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="or: ${o}">
+                            <tr th:each="or: ${o_list}">
                                 <td th:text="${or.id}"></td>
                                 <td th:text="${or.userid}"></td>
                                 <td th:text="${or.venueid}"></td>
@@ -127,8 +146,8 @@
                                 <td th:text="${or.createtime}"></td>
                                 <td th:text="${or.status}"></td>
                                 <td>
-                                    <button class="btn btn-sm btn-success" href="#">Agree</button>
-                                    <button class="btn btn-sm btn-danger">Refuse</button>
+                                    <a th:href="@{/order/passOrderStatus(id=${or.id})}" class="btn btn-sm btn-success" onclick="sure()">Agree</a>
+                                    <a th:href="@{/order/refuOrderStatus(id=${or.id})}" class="btn btn-sm btn-danger">Refuse</a>
                                 </td>
 
                             </tr>

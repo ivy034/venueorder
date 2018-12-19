@@ -34,9 +34,9 @@
 
             <div class="header-right">
 
-                <a href="message-task.html" th:href="@{message-task.html}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="message.html" th:href="@{message.html}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
                 <a href="index.html" th:href="@{index.html}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-                <a href="login.html" th:href="@{/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <a href="loginUser.html" th:href="@{/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
             </div>
@@ -62,24 +62,24 @@
 
 
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        <a class="active-menu" href="index.html" th:href="@{/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
 
                      <li>
-                        <a href="form.html"><i class="fa fa-desktop "></i>My Information </a>
+                        <a href="form.html" th:href="@{/user/myInfo}"><i class="fa fa-desktop "></i>My Information </a>
                     </li>
                       <li>
-                        <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
+                        <a href="venue.html" th:href="@{/venue}"><i class="fa fa-anchor "></i>The Venue</a>
                     </li>
                    
                     <li>
-                        <a href="order.html"><i class="fa fa-square-o "></i>My Order</a>
+                        <a href="order.html" th:href="@{/order/myOrderList}"><i class="fa fa-square-o "></i>My Order</a>
                     </li>
                     <li>
-                        <a href="news.html"><i class="fa fa-coffee "></i>News Center</a>
+                        <a href="news.html" th:href="@{/news}"><i class="fa fa-coffee "></i>News Center</a>
                     </li>
                     <li>
-                        <a href="message.html"><i class="fa fa-edit "></i>Message Board</a>
+                        <a href="message.html" th:href="@{/message}"><i class="fa fa-edit "></i>Message Board</a>
                     </li>
                 </ul>
 
@@ -142,15 +142,15 @@
                                 <!-- 轮播（Carousel）项目 -->
                                 <div class="carousel-inner" >
                                     <div class="item active" style="width:600px;height:300px" >
-                                        <a href="blank.html"><img th:src="/img/slideshow/notice4.jpg" src="../static/img/slideshow/notice4.jpg" width=100% height=100% alt="First slide"/></a>
+                                        <a href="blank.html" ><img th:src="@{/img/slideshow/notice4.jpg}" src="../static/img/slideshow/notice4.jpg" width=100% height=100% alt="First slide"/></a>
                                         <div class="carousel-caption">1</div>
                                     </div>
                                     <div class="item" style="width:600px;height:300px" >
-                                        <a href="blank.html"><img th:src="/img/slideshow/notice5.jpg" src="../static/img/slideshow/notice5.jpg" width=100% height=100% alt="Second slide"></a>/
+                                        <a href="blank.html"><img th:src="@{/img/slideshow/notice5.jpg}"  src="../static/img/slideshow/notice5.jpg" width=100% height=100% alt="Second slide"></a>/
                                         <div class="carousel-caption">2</div>
                                     </div>
                                     <div class="item" style="width:600px;height:300px" >
-                                        <a href="blank.html"><img th:src="/img/slideshow/notice6.jpg"  src="../static/img/slideshow/notice6.jpg" width=100% height=100% alt="Third slide"></a>
+                                        <a href="blank.html" ><img th:src="@{/img/slideshow/notice6.jpg}"   src="../static/img/slideshow/notice6.jpg" width=100% height=100% alt="Third slide"></a>
                                         <div class="carousel-caption">3</div>
                                     </div>
                                 </div>

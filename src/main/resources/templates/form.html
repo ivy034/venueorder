@@ -80,9 +80,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="message.html" th:href="@{/message.html}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" th:href="@{/index.html}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="loginUser.html" th:href="@{/templates/loginUser.html}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
         </div>
     </nav>
@@ -92,10 +92,13 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img th:src="/img/user.png" src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -133,7 +136,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-head-line">MY INFOMATION</h1>
+                    <h1 class="page-head-line">MY INFORMATION</h1>
                     <h1 class="page-subhead-line">Fill in the form below to modify your self information. </h1>
 
                 </div>
@@ -166,11 +169,11 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="form-horizontal" role="form" >
+                                                    <form action="/user/updateUser" class="form-horizontal" role="form" >
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Name</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control col-sm-6" name="name" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
+                                                                <input type="text" required="true" class="form-control col-sm-6" name="name" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
                                                             </div>
                                                         </div>
                                                         <br/>
@@ -179,12 +182,12 @@
                                                             <div class="radio col-sm-6">
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <input type="radio" name="sex" id="optionsRadios6" value="male" checked>Male
+                                                                        <input type="radio" required="true" name="sex" id="optionsRadios6" value="male" checked>Male
                                                                     </label>
                                                                 </div>
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <input type="radio" name="sex" id="optionsRadios5" value="female">Female
+                                                                        <input type="radio" required="true" name="sex" id="optionsRadios5" value="female">Female
                                                                     </label>
                                                                 </div>
 
@@ -194,7 +197,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Phone number</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control" name="phoneNumber" id="phone" onblur="isMobile(this.value)">
+                                                                <input type="text" required="true" class="form-control" name="phoneNumber" id="phone" onblur="isMobile(this.value)">
                                                             </div>
                                                         </div>
 
@@ -204,7 +207,7 @@
                                                             <form name="myForm" >
 
                                                                 <div class="col-sm-6">
-                                                                    <input type="email" class="form-control" name="email" id="email" onblur="isEmail()" >
+                                                                    <input type="email" required="true" class="form-control" name="email" id="email" onblur="isEmail()" >
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -218,22 +221,23 @@
                                                             </div>
                                                         </div>
                                                         <br/>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary" onclick="sure()">
+                                                                提交更改
+                                                            </button>
+                                                        </div>
                                                         </form>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary" onclick="sure()">
-                                                        提交更改
-                                                    </button>
-                                                </div>
+
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal -->
                                     </div>
                                 </div>
                                 </div></div>
-                                <div class="row">
-                            <div class="form-group" th:each="us: ${u}">
+                            <div class="row" th:each="us: ${u}">
+                            <div class="form-group" >
                                 <label class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-9">
                                     <p th:text="${us.name}"></p>
@@ -241,21 +245,21 @@
                             </div>
 
                             <br/>
-                            <div class="form-group" th:each="us: ${u}">
+                            <div class="form-group" >
                                 <label class="col-sm-2 control-label">Sex</label>
                                 <div class="col-sm-9">
                                     <p th:text="${us.sex}"></p>
                                 </div>
                             </div>
                             <br/>
-                            <div class="form-group" th:each="us: ${u}">
+                            <div class="form-group" >
                                 <label class="col-sm-2 control-label">Phone number</label>
                                 <div class="col-sm-9">
                                     <p th:text="${us.phoneNumber}"></p>
                                 </div>
                             </div>
                             <br/>
-                            <div class="form-group" th:each="us: ${u}">
+                            <div class="form-group" >
                                 <label class="col-sm-2 control-label">Email</label>
                                 <form name="myForm" >
                                 <div class="col-sm-9">
@@ -264,7 +268,7 @@
                                 </form>
                             </div>
                             <br/>
-                            <div class="form-group" th:each="us: ${u}">
+                            <div class="form-group" >
                                 <label class="col-sm-2 control-label">Self Introduction</label>
                                 <div class="col-sm-9">
                                     <p th:text="${us.introduction}"></p>

@@ -53,9 +53,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
         </div>
     </nav>
@@ -65,10 +65,13 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="/img/user.png" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -112,7 +115,7 @@
             </div>
             <div class="row">
                 <div class="col-md-5">
-                    <img src="../static/img/portfolio/hall1.jpg" class="img-responsive " alt="" />
+                    <img th:src="/img/portfolio/hall1.jpg" src="../static/img/portfolio/hall1.jpg" class="img-responsive " alt="" />
                 </div>
                 <div class="col-md-7">
                     <div class="container">
@@ -121,17 +124,17 @@
                         <p>联系电话：</p>
                         <p>租金：</p>
                         <p>
-                        <form class="form-inline" onsubmit="return postform(this)" role="form" method="POST">
+                        <form action="/order/addOrder" class="form-inline" onsubmit="return postform(this)" role="form" method="POST">
 
 
                         预订时间：
                         <div class="radio">
                             <label>
-                                <input type="radio" name="optionsRadiosinline" disabled>8:00-12:00
+                                <input type="radio" name="time" >8:00-12:00
                                 &nbsp;
-                                <input type="radio" name="optionsRadiosinline">13:00-17:00
+                                <input type="radio" name="time">13:00-17:00
                                 &nbsp;
-                                <input type="radio" name="optionsRadiosinline">18:00-22:00
+                                <input type="radio" name="time">18:00-22:00
                             </label>
                         </div>
                         <br/>

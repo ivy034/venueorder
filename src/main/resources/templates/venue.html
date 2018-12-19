@@ -31,9 +31,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
         </div>
     </nav>
@@ -45,8 +45,11 @@
                     <div class="user-img-div">
                         <img src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -106,11 +109,11 @@
                     <div class="portfolio-item hall mix_all" data-cat="hall" >
 
 
-                        <img src="../static/img/portfolio/hall1.jpg" class="img-responsive " alt="" />
+                        <img th:src="@{/img/portfolio/hall1.jpg}" src="../static/img/portfolio/hall1.jpg" class="img-responsive " alt="" />
                         <div class="overlay">
                             <p>
                                 <span>
-                                A Hall
+                                东礼堂
                                 </span>
 
                             </p>
@@ -128,10 +131,9 @@
                         <div class="overlay">
                             <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                东体育馆
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/b.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -147,10 +149,9 @@
                         <div class="overlay">
                           <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                文史楼333
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -170,10 +171,9 @@
                         <div class="overlay">
                            <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                阶梯教室
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info " title="Image Title Here" href="../static/img/portfolio/d.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -189,10 +189,9 @@
                         <div class="overlay">
                             <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                大会堂
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/e.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -208,10 +207,9 @@
                         <div class="overlay">
                           <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                教书院222
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/h.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -230,10 +228,9 @@
                         <div class="overlay">
                             <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                教书院444
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview  btn btn-info" title="Image Title Here" href="../static/img/portfolio/g.jpg"> <i class="fa fa-plus fa-2x"></i></a>
 
@@ -249,7 +246,7 @@
                         <div class="overlay">
                             <p>
                                 <span>
-                                B Hall
+                                西礼堂
                                 </span>
 
 
@@ -268,10 +265,9 @@
                         <div class="overlay">
                           <p>
                                 <span>
-                                Image Orinagal Size: 750x500
+                                西体育馆
                                 </span>
-                               
-                                PROJECT TITLE HERE
+
                             </p>
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
 

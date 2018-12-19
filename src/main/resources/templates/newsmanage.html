@@ -47,9 +47,9 @@
 
         <div class="header-right">
 
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="messagemanage.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
         </div>
     </nav>
@@ -59,10 +59,13 @@
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text">
-                            Welcome, <br />Jhon Deo Alex!                    <!--request-->
+                        <div class="inner-text" th:each="us: ${u}">
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
                             <br />
                         </div>
                     </div>
@@ -119,7 +122,7 @@
                                     </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="form-horizontal" role="form" >
+                                    <form action="/news/addNews" class="form-horizontal" role="form" >
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Title</label>
                                             <div class="col-sm-6">
@@ -141,15 +144,16 @@
                                             </div>
                                         </div>
                                         <br/>
-                                    </form>
-
-                                    <div class="modal-footer">
+                                        <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                                         </button>
                                         <button type="submit" class="btn btn-primary" onclick="sure()">
-                                            提交更改
+                                            提交
                                         </button>
                                     </div>
+                                    </form>
+
+
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal -->
                         </div>
@@ -171,14 +175,14 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="ne: ${n}">
+                            <tr th:each="ne: ${n_list}">
                                 <td th:text="${ne.id}"></td>
                                 <td th:text="${ne.title}"></td>
                                 <td th:text="${ne.annoucetime}"></td>
                                 <td th:text="${ne.author}"></td>
                                 <td>
                                     <a target="_blank" class="btn btn-info "  href="wizard.html">Edit</a>&nbsp;&nbsp;
-                                    <button class="btn btn-sm btn-danger" onclick="deletesure()">Delete</button>
+                                    <a th:href="@{/news/deleteNews(id=${ne.id})}"  class="btn btn-sm btn-danger" onclick="deletesure()">Delete</a>
                                 </td>
                             </tr>
                             </tbody>

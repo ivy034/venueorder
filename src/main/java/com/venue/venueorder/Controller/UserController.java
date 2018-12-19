@@ -22,7 +22,12 @@ public class UserController {
 
     @GetMapping("/login")
     public String index(){
-        return "login";
+        return "loginUser";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
     }
 
     @GetMapping("/signIn")
@@ -88,5 +93,5 @@ public class UserController {
         }
     }
 
-    /*修改用户信息*/
+    /*修改用户信息 updateUser 最后return "form"*/
 }

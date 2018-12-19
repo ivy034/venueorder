@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -43,6 +43,7 @@
 </head>
 <body>
 
+
 <!-- contact-form -->
 <div class="message warning">
     <div class="inset">
@@ -53,20 +54,26 @@
         </div>
 
 
-            <form action="/user/register" name="loginform" class="form-horizontal">
-                <div class="form-group">
-                    <label>Enter Name</label>
-                    <input class="form-control" type="text" name="name" required="true">
-                </div>
-                <div class="form-group">
-                    <label>Enter Password</label>
-                    <input class="form-control" type="password" name="password" required="true">
-                </div>
-                <button type="submit" class="btn btn-danger" >Register Now</button>
 
+        <form action="/user/signIn" name="loginform">
+            <li>
+                <input type="text" class="text" name="name" value="name" required="true" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}"><a href="#" class=" icon user"></a>
+            </li>
+            <div class="clear"> </div>
+            <li>
+                <input type="password" value="Password" name="password" required="true" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+            </li>
+            <div class="clear"> </div>
+            <div class="submit">
+                <input type="submit"  value="Sign in" >
+                <h4><a href="register.html">Lost your Password ?</a></h4>
 
-            </form>
+                <div class="clear">  </div>
+                <br/>
+                Not register? &nbsp;&nbsp;&nbsp;<a href="register.html" >click here </a>
+            </div>
 
+        </form>
     </div>
 </div>
 
