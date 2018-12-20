@@ -1,5 +1,6 @@
 package com.venue.venueorder.Service.impl;
 
+import com.venue.venueorder.DO.User;
 import com.venue.venueorder.DO.Venue;
 import com.venue.venueorder.Repository.VenueRepository;
 import com.venue.venueorder.Service.VenueService;
@@ -34,4 +35,11 @@ public class VenueServiceImpl implements VenueService {
         return venueRepository.findByName(name);
     }//根据用户名查询
 
+    @Override
+    public List<Venue> findAllVenue(){return venueRepository.findAll();}
+
+    @Override
+    public void update(Venue venue) {
+        venueRepository.save(venue);
+    }
 }

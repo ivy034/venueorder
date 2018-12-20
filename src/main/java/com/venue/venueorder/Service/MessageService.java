@@ -8,6 +8,8 @@ import java.util.List;
 public interface MessageService {
     Message findOne(Integer id);
 
+    List<Message> findAllMessage();
+
     Message findByTitleAndAuthor(String title, String author);
 
     Message createMessage(Message news);
@@ -15,4 +17,6 @@ public interface MessageService {
     void deleteMessageById(Integer id);
 
     List<Message> findByTitle(String title);
+
+    void update(Message message);
 }

@@ -39,4 +39,10 @@ public class NewsServiceImpl implements NewsService {
         return newsRepository.findByTitleAndAuthor(title,author);
     }
 
+    @Override
+    public List<News> findAllNews(){return newsRepository.findAll();}
+
+    @Override
+    public void update(News news) { newsRepository.save(news);
+    }
 }

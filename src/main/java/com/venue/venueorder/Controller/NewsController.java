@@ -19,28 +19,36 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    /*新闻列表*/
+    @GetMapping()
+    public String newsList(Model m){
+        List<News> newsList = newsService.findAllNews();
+        m.addAttribute("n_list", newsList);
+        return "newsmanage";
+    }
     /**
-     * 删除指定id消息
+     * 删除指定id新闻
      *
      * @param id
      * @return
      */
-    @RequestMapping(value = "/deleteNews")
-    public Object deleteNews(@RequestParam("id") Integer id) {
+    @GetMapping("/deleteNews")
+    public String  deleteNews(@RequestParam("id")Integer id) {
+        News news = newsService.findOne(id);
         newsService.deleteNewsById(id);
-        return "news";
+        return "redirect:/news/newsList";
 
     }
 
     /**
-     * 添加消息
+     * 添加新闻
      *
      * @param title
      * @param content
      * @return
      */
-    @RequestMapping(value = "/addNews")
-    public String addNews(@RequestParam("title") String title, @RequestParam("content") String content, Model model) {
+    @GetMapping("/addNews")
+    public String addNews(@RequestParam("title") String title, @RequestParam("content") String content,@RequestParam("name")String author,Model model) {
 
         News tempNews = new News();
         tempNews.setTitle(title);
@@ -48,6 +56,10 @@ public class NewsController {
         tempNews.setAnnounceTime(new Date());
         News resultNews = newsService.createNews(tempNews);
         model.addAttribute("n", resultNews);//resultNews传给n
-        return "news";
+        return "redirect:/news/newsList";
     }
+//
+
+
+
 }

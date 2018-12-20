@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserService {
     User findOne(Integer id);
 
+    List<User> findAllUser();
+
     User findByNameAndPassword(String name, String password);
 
     User createUser(User user);
@@ -15,5 +17,7 @@ public interface UserService {
     void deleteUserById(Integer id);
 
     List<User> findByName(String name);//根据用户名查询
+
+    void update(User user);
 }
 

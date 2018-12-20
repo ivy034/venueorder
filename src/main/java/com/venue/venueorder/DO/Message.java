@@ -13,7 +13,7 @@ import java.util.Date;
  **/
 @Entity
 @Data
-@Table(name = "news")
+@Table(name = "message")
 public class Message {
 
     /* 新闻ID */
@@ -37,6 +37,11 @@ public class Message {
     /* 发布时间 */
     @Column(name = "announce_time")
     public Date announceTime;
+
+    /*发布状态*/
+    @Column(name="status")
+    public String status;
+
 
     public Message(){
     }
@@ -82,7 +87,15 @@ public class Message {
         return announceTime;
     }
 
-    public void setAnnounceTime(Date annouceTime) {
-        this.announceTime = annouceTime;
+    public void setAnnounceTime(Date announceTime) {
+        this.announceTime = announceTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

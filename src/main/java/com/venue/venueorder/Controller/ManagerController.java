@@ -1,10 +1,12 @@
 package com.venue.venueorder.Controller;
 
 import com.venue.venueorder.DO.Manager;
+import com.venue.venueorder.Service.ManagerService;
 import com.venue.venueorder.Service.impl.ManagerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.venue.venueorder.Service.ManagerService;
 
@@ -16,12 +18,20 @@ import  java.util.List;
 public class ManagerController {
     @Autowired
     private ManagerService managerService;
-
-
-    @GetMapping("/signIn")
-    public Manager signIn(@RequestParam("name") String name,
-                       @RequestParam("password") String password) {
-        return managerService.findByNameAndPassword(name, password);
+    
+    /*进入管理员登录界面*/
+    @GetMapping("/login")
+    public String index(){
+        return "loginAdmin";
+    }
+    
+    /*管理员登录*/
+    @GetMapping("/signInAsAdmin")
+    public String signIn(@RequestParam("name") String name,
+                         @RequestParam("password") String password, Model model) {
+        Manager manager = managerService.findByNameAndPassword(name, password);
+        model.addAttribute("m", manager);//manager传到m,
+        return "index-admin";
     }
 
     /**
@@ -30,8 +40,8 @@ public class ManagerController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/deleteManager/{id}")
-    public Object deleteManager(@PathVariable("id")Integer id) {
+    @GetMapping( "/deletemanager/{id}")
+    public Object deletemanager(@PathVariable("id")Integer id) {
         Manager manager = managerService.findOne(id);
         if (null == manager) {
             return "删除管理员失败:" + id + "没找到该管理员";
@@ -48,8 +58,8 @@ public class ManagerController {
      *
      * @return
      */
-    @RequestMapping(value = "/getManager1/{name}")
-    public Object getManager(@PathVariable String name) {
+    @GetMapping("/getmanager1/{name}")
+    public Object getmanager(@PathVariable String name) {
         List<Manager> managerList = managerService.findByName(name);
         if (null != managerList && managerList.size() != 0) {
             return managerList;

@@ -37,4 +37,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByName(name);
     }//根据用户名查询
 
+    @Override
+    public List<User> findAllUser(){return userRepository.findAll();}
+
+    @Override
+    public void update(User user) {
+        userRepository.save(user);
+    }
+
+
 }

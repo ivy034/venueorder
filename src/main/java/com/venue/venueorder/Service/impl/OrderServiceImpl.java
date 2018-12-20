@@ -3,6 +3,7 @@ package com.venue.venueorder.Service.impl;
 import com.venue.venueorder.DO.Order;
 import com.venue.venueorder.Repository.OrderRepository;
 import com.venue.venueorder.Service.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,4 +33,11 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
     }
 
+    @Override
+    public List<Order> findAllOrder(){return orderRepository.findAll();}
+
+    @Override
+    public void update(Order order) {
+        orderRepository.save(order);
+    }
 }

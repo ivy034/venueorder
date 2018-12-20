@@ -34,6 +34,10 @@ public class Order {
     @Column(name = "venue_time")
     private  String venueTime;
 
+    /*场馆名称*/
+    @Column(name ="venue_name")
+    private  String venueName;
+
     /* 费用 */
     @Column(name = "cost")
     private int cost;
@@ -103,5 +107,13 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 public interface NewsService {
     News findOne(Integer id);
 
+    List<News> findAllNews();
+
     News findByTitleAndAuthor(String title, String author);
 
     News createNews(News news);
@@ -15,4 +17,6 @@ public interface NewsService {
     void deleteNewsById(Integer id);
 
     List<News> findByTitle(String title);
+
+    void update(News news);
 }

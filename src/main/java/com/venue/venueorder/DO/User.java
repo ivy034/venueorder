@@ -39,8 +39,13 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    /*性别*/
     @Column(name = "sex")
     private  String sex;
+
+    /*个人介绍*/
+    @Column(name= "self_intro")
+    private  String selfIntro;
 
     public User(){
     }
@@ -96,6 +101,14 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getSelfIntro() {
+        return selfIntro;
+    }
+
+    public void setSelfIntro(String selfIntro) {
+        this.selfIntro = selfIntro;
     }
 }
 

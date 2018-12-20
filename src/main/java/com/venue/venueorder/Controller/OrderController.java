@@ -2,6 +2,7 @@ package com.venue.venueorder.Controller;
 
 import com.venue.venueorder.DO.Order;
 import com.venue.venueorder.DO.Venue;
+import com.venue.venueorder.Service.VenueService;
 import com.venue.venueorder.Service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,21 @@ import java.util.zip.DataFormatException;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    private VenueService venueService;
+
+    @GetMapping("/myOrderList")
+    public String myOderList(@RequestParam("userId")Integer userId, Model m){
+        List<Order> orderList = orderService.findByUserId(userId);
+        m.addAttribute("myo_list", orderList);
+        return "order";
+    }
+
+    @GetMapping("/orderList")
+    public String orderList(Model m){
+        List<Order> orderList = orderService.findAllOrder();
+        m.addAttribute("o_list", orderList);
+        return "ordermanage";
+    }
 
     /**
      * 删除指定id订单
@@ -27,16 +43,16 @@ public class OrderController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/deleteMyOrder")
+    @GetMapping("/deleteMyOrder")
     public String deleteMyOrder(@RequestParam("id") Integer id) {
             orderService.deleteOrderById(id);
-            return "order";
+            return "redirect:/order/myOrderList";
     }
 
-    @RequestMapping(value = "/deleteOrder")
+    @GetMapping("/deleteOrder")
     public String deleteOrder(@RequestParam("id") Integer id) {
         orderService.deleteOrderById(id);
-        return "ordermanage";
+        return "redirect:/order/orderList";
     }
 
     /**
@@ -47,18 +63,20 @@ public class OrderController {
      * @param venueTime
      * @return
      */
-    @RequestMapping(value = "/addOrder")
-    public String addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId , @RequestParam("venueTime") String venueTime, Model model) {
+    @GetMapping("/addOrder")
+    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId , @RequestParam("venueTime") String venueTime, Model model) {
 
         Order tempOrder = new Order();
         tempOrder.setUserId(userId);
         tempOrder.setVenueId(venueId);
+        Venue tempVenue=venueService.findOne(venueId);
+        String venueName=tempVenue.getName();
         tempOrder.setCreateTime(new Date());
+        tempOrder.setVenueName(venueName);
         tempOrder.setStatus("未审核");
         tempOrder.setCost(orderService.findOne(venueId).getCost());
         Order resultOrder = orderService.createOrder(tempOrder);
         model.addAttribute("o", resultOrder);//resultOrder传到o,
-        return "order";//html名
     }
 // 条件查询
 
@@ -67,7 +85,7 @@ public class OrderController {
      *
      * @return
      */
-    @RequestMapping(value = "/getOrder1")
+    @GetMapping( "/getOrder1")
     public Object getOrder(Integer id) {
         List<Order> orderList = orderService.findByUserId(id);
         if (null != orderList && orderList.size() != 0) {
@@ -77,6 +95,23 @@ public class OrderController {
         }
     }
 
-   /*修改订单信息*/
+   /*通过订单*/
+  @GetMapping("/agreeOrderStatus")
+  public String changePassword(@RequestParam("id") Integer id,Model m) {
+      Order order = orderService.findOne(id);
+      order.setStatus("已通过");
+      orderService.update(order);
+      return "redirect:/order/orderList";
+  }
+
+  /*拒绝订单*/
+  @GetMapping("/refuOrderStatus")
+  public String changePassword(@RequestParam("id") Integer id) {
+      Order order = orderService.findOne(id);
+      order.setStatus("未通过");
+      orderService.update(order);
+      return "redirect:/order/orderList";
+  }
+
 
 }

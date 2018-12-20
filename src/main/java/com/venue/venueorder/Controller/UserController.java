@@ -1,12 +1,12 @@
  package com.venue.venueorder.Controller;
 
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.ui.Model;
-        import org.springframework.web.bind.annotation.*;
-        import com.venue.venueorder.Service.UserService;
-        import com.venue.venueorder.DO.User;
-        import  java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import com.venue.venueorder.Service.UserService;
+import com.venue.venueorder.DO.User;
+import  java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -21,9 +21,17 @@ public class UserController {
         m.addAttribute("u_list", userList);
         return "usermanage";
     }
+
+    /*进入用户登录界面*/
     @GetMapping("/login")
     public String index(){
         return "loginUser";
+    }
+
+    /*最初页面*/
+    @GetMapping("/loginfirst")
+    public String login(){
+        return "login";
     }
 
     @GetMapping("/signIn")
