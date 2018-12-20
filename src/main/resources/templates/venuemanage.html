@@ -48,9 +48,9 @@
 
         <div class="header-right">
 
-            <a href="messagemanage.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="messagemanage.html" th:href="@{/message/MessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="loginAdmin.html" th:href="@{/manager/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
         </div>
@@ -58,15 +58,15 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+            <ul class="nav" id="main-menu" th:each="ma: ${m}">
                 <li>
                     <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="/img/user.png" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text" th:each="us: ${u}">
+                        <div class="inner-text" >
                             Welcome, <br />
 
-                            <p th:text="${us.name}">name</p>
+                            <p th:text="${ma.name}">name</p>
 
                             <br />
                         </div>
@@ -76,26 +76,27 @@
 
 
                 <li>
-                    <a href="index-admin.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    <a th:href="@{/manager/index}" href="index-admin.html"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="usermanage.html"><i class="fa fa-edit "></i>User Management</a>
-                </li>
-
-                <li>
-                    <a class="active-menu" href="venuemanage.html"><i class="fa fa-anchor "></i>Venue Management</a>
+                    <a href="usermanage.html" th:href="@{/user/userList}" ><i class="fa fa-edit "></i>User Management</a>
                 </li>
 
                 <li>
-                    <a href="ordermanage.html"><i class="fa fa-square-o "></i>Order Management</a>
+                    <a class="active-menu" href="venuemanage.html" th:href="@{/venue/venueList}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                </li>
+
+                <li>
+                    <a href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
-                    <a href="newsmanage.html"><i class="fa fa-coffee "></i>News Management</a>
+                    <a href="newsmanage.html" th:href="@{/news/newsList}" ><i class="fa fa-coffee "></i>News Management</a>
                 </li>
                 <li>
-                    <a href="messagemanage.html"><i class="fa fa-edit "></i>Message Management</a>
+                    <a href="messagemanage.html" th:href="@{/message/messageList}" ><i class="fa fa-edit "></i>Message Management</a>
                 </li>
             </ul>
+
 
         </div>
 
@@ -127,7 +128,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action="@{/venue/addVenue(address=${ve.address}),name=${ve.name}),time=${ve.time}),cost=${ve.cost})}" class="form-horizontal" role="form" >
+                                    <form action="/venue/addVenue" class="form-horizontal" role="form" >
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Venue Name</label>
@@ -207,7 +208,7 @@
                                 <td th:text="${ve.id}"></td>
                                 <td th:text="${ve.name}"></td>
                                 <td th:text="${ve.address}"></td>
-                                <td th:text="${ve.price}"></td>
+                                <td th:text="${ve.cost}"></td>
                                 <td th:text="${ve.phoneNumber}"></td>
                                 <td>
                                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
@@ -225,7 +226,7 @@
                                                     </div>
                                                     <div class="modal-body">
 
-                                                        <form action="@{/venue/updateVenue(id=${ve.id}),address=${ve.address}),name=${ve.name}),time=${ve.time}),cost=${ve.cost})}" class="form-horizontal" role="form" >
+                                                        <form action="/venue/updateVenue(id=${ve.id}),address=${ve.address}),name=${ve.name}),time=${ve.time}),cost=${ve.cost})" class="form-horizontal" role="form" >
 
                                                             <div class="form-group">
                                                                 <label class="col-sm-2 control-label">Venue Name</label>
@@ -295,7 +296,7 @@
                                 <td>$10/h</td>
                                 <td>124353531531</td>
                                 <td>
-                                    <a target="_blank" class="btn btn-info "  href="wizard.html"  onclick="window.open(blank.html)">Edit</a>&nbsp;&nbsp;
+                                    <a target="_blank" class="btn btn-info "  href="#">Edit</a>&nbsp;&nbsp;
                                     <button class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</button>
                                 </td>
                             </tr>
@@ -330,14 +331,18 @@
 <!-- /. FOOTER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<script src="../static/js/jquery-1.10.2.js"></script>
+<script src="../static/js/jquery-1.10.2.js" th:src="/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.js" th:src="/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js" th:src="/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js" th:src="/js/jquery.mixitup.min.js"></script>
 <!-- METISMENU SCRIPTS -->
-<script src="../static/js/jquery.metisMenu.js"></script>
+<script src="../static/js/jquery.metisMenu.js" th:src="/js/jquery.metisMenu.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="../static/js/custom.js"></script>
-
+<script src="../static/js/custom.js" th:src="/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js" th:src="/js/galleryCustom.js"></script>
 
 
 </body>

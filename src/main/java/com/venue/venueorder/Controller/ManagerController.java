@@ -33,6 +33,11 @@ public class ManagerController {
         model.addAttribute("m", manager);//manager传到m,
         return "index-admin";
     }
+    /*返回首页*/
+    @GetMapping("/index")
+    public String indexadmin(){
+        return  "index-admin";
+    }
 
     /**
      * 删除指定id管理员

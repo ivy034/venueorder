@@ -24,6 +24,7 @@
         }
     </script>
 </head>
+
 <body>
 <div id="wrapper">
     <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -34,26 +35,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Venue Order</a>
+            <a class="navbar-brand" href="index.html" th:href="@{/user/index}">Venue Order</a>
         </div>
 
         <div class="header-right">
 
-            <a href="message.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index.html" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
-            <a href="loginUser.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            <a href="message.html" th:href="@{/message/myMessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" th:href="@{/user/index}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
 
         </div>
     </nav>
+
     <!-- /. NAV TOP  -->
+
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+            <ul class="nav" id="main-menu" th:each="us: ${u}">
                 <li>
                     <div class="user-img-div">
-                        <img th:src="@{/img/user.png}"  src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
-                        <div class="inner-text" th:each="us: ${u}">
+                        <div class="inner-text" >
                             Welcome, <br />
 
                             <p th:text="${us.name}">name</p>
@@ -66,28 +70,29 @@
 
 
                 <li>
-                    <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    <a href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
 
                 <li>
-                    <a href="form.html"><i class="fa fa-desktop "></i>My Infomation </a>
+                    <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
                 </li>
                 <li>
-                    <a href="venue.html"><i class="fa fa-anchor "></i>The Venue</a>
+                    <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
                 </li>
 
-                <li>
-                    <a class="active-menu" href="blank.html"><i class="fa fa-square-o "></i>My Order</a>
+                <li >
+                    <a class="active-menu" href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                 </li>
                 <li>
-                    <a  href="news.html"><i class="fa fa-coffee "></i>News Center</a>
+                    <a href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
                 </li>
                 <li>
-                    <a href="message.html"><i class="fa fa-edit "></i>Message Board</a>
+                    <a href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
                 </li>
             </ul>
 
         </div>
+
 
     </nav>
     <!-- /. NAV SIDE  -->
@@ -117,15 +122,15 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th: each="or: ${myo_list}">
-                                <td th:text="${or.id}"></td>
-                                <td th:text="${or.userid}"></td>
-                                <td th:text="${or.venueid}"></td>
-                                <td th:text="${or.venuename}"></td>
-                                <td th:text="${or.cost}"></td>
-                                <td th:text="${or.createtime}"></td>
-                                <td th:text="${or.status}"></td>
-                                <td><a th:href="@{/order/deleteMyOrder(id=${or.id})}" class="btn btn-sm btn-danger" onclick="deletesure()">Cancel</a></td>
+                            <tr th: each="o: ${myo_list}">
+                                <td th:text="${o.id}"></td>
+                                <td th:text="${o.userid}"></td>
+                                <td th:text="${o.venueid}"></td>
+                                <td th:text="${o.venuename}"></td>
+                                <td th:text="${o.cost}"></td>
+                                <td th:text="${o.createtime}"></td>
+                                <td th:text="${o.status}"></td>
+                                <td><a th:href="@{/order/deleteMyOrder(id=${o.id})}" class="btn btn-sm btn-danger" onclick="deletesure()">Cancel</a></td>
 
                             </tr>
 
@@ -152,7 +157,7 @@
                             <tr>
                                 <td>3</td>
                                 <td>357689679</td>
-                                <td><a href="wizard.html" class="footer-sec">大礼堂</a></td>
+                                <td><a href="#" class="footer-sec">大礼堂</a></td>
                                 <td>$10</td>
                                 <td>2018-12-11</td>
                                 <td>已结束</td>
@@ -182,13 +187,18 @@
 <!-- /. FOOTER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<script src="../static/js/jquery-1.10.2.js"></script>
+<script src="../static/js/jquery-1.10.2.js" th:src="/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.js" th:src="/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js" th:src="/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js" th:src="/js/jquery.mixitup.min.js"></script>
 <!-- METISMENU SCRIPTS -->
-<script src="../static/js/jquery.metisMenu.js"></script>
+<script src="../static/js/jquery.metisMenu.js" th:src="/js/jquery.metisMenu.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="../static/js/custom.js"></script>
+<script src="../static/js/custom.js" th:src="/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js" th:src="/js/galleryCustom.js"></script>
 
 
 </body>
