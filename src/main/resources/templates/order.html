@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
@@ -116,7 +117,7 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="or: ${myo_list}">
+                            <tr th: each="or: ${myo_list}">
                                 <td th:text="${or.id}"></td>
                                 <td th:text="${or.userid}"></td>
                                 <td th:text="${or.venueid}"></td>

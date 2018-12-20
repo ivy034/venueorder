@@ -4,6 +4,7 @@ import com.venue.venueorder.DO.Venue;
 import com.venue.venueorder.Service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class VenueController {
     private VenueService venueService;
 
 
+    @GetMapping("/venueList")
+    public String userList(Model m){
+        List<Venue> venueList = venueService.findAllVenue();
+        m.addAttribute("v_list", venueList);
+        return "venuemanage";
+    }
     /**
      * 删除指定id场馆
      *
@@ -24,48 +31,31 @@ public class VenueController {
      */
     @RequestMapping(value = "/deleteVenue")
     public Object deleteVenue(@RequestParam("id")Integer id) {
-        Venue venue = venueService.findOne(id);
-        if (null == venue) {
-            return "删除场馆失败:" + id + "没找到该场馆";
-        } else {
-            venueService.deleteVenueById(id);
-            return "删除场馆成功:" + id;
-        }
+        venueService.deleteVenueById(id);
+        return "redirect:/venue/venueList";
     }
-    /*修改场馆信息*/
+    /*增加场馆*/
 
     /**
-     * 添加場館
+     * 修改场馆信息
      *
      * @param id
      * @param address
      * @param name
      * @return
      */
-   /*
-    @RequestMapping(value = "/addvenue")
-    public Object addVenue(Integer id, String address, String name,String time, Integer cost) {
-        System.out.println("address:" + address);
 
-        System.out.println("Id:" + id +  "name:" + name+ "time"+time+"address:" + address );
-
+    @RequestMapping(value = "/updateVenue")
+    public Object addVenue(@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
+                           @RequestParam("cost") Integer cost) {
         Venue tempVenue = venueService.findOne(id);
-        if (null == tempVenue) {
-            tempVenue = new Venue();
-            tempVenue.setId(id);
-        }
         tempVenue.setAddress(address);
         tempVenue.setCost(cost);
         tempVenue.setTime(time);
         tempVenue.setName(name);
         Venue resultVenue = venueService.createVenue(tempVenue);
-        if (null == resultVenue) {
-            return "新增场馆失败";
-        } else {
-            return "新增场馆:" + resultVenue.getName();
-        }
+        return "redirect:/venue/venueList";
     }
-    */
 
 // 条件查询
 

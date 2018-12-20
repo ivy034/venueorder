@@ -28,6 +28,12 @@ public class UserController {
         return "loginUser";
     }
 
+    /*用户信息页面*/
+    @GetMapping("/myInfo")
+    public  String myInfo(){
+        return "form";
+    }
+
     /*最初页面*/
     @GetMapping("/loginfirst")
     public String login(){
@@ -108,5 +114,6 @@ public class UserController {
         userService.update(user);
         return "form";
     }
+
 
 }

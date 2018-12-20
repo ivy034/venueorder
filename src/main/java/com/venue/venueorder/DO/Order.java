@@ -3,7 +3,8 @@ package com.venue.venueorder.DO;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * @param: none
@@ -13,7 +14,7 @@ import java.util.Date;
  **/
 @Entity
 @Data
-@Table(name = "order")
+@Table(name = "booking")
 public class Order {
 
     /* 订单ID */
@@ -40,11 +41,11 @@ public class Order {
 
     /* 费用 */
     @Column(name = "cost")
-    private int cost;
+    private Integer cost;
 
     /* 创建时间 */
-    @Column(name = "create_time")
-    private Date createTime;
+    @Column(name = "start_time")
+    private Timestamp createTime;
 
     /*当前状态*/
     @Column(name = "status")
@@ -93,11 +94,11 @@ public class Order {
         this.cost = cost;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

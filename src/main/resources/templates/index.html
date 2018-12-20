@@ -72,8 +72,8 @@
                         <a href="venue.html" th:href="@{/venue}"><i class="fa fa-anchor "></i>The Venue</a>
                     </li>
                    
-                    <li>
-                        <a href="order.html" th:href="@{/order/myOrderList}"><i class="fa fa-square-o "></i>My Order</a>
+                    <li th:each="us: ${u}">
+                        <a th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                     </li>
                     <li>
                         <a href="news.html" th:href="@{/news}"><i class="fa fa-coffee "></i>News Center</a>

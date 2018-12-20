@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.venue.venueorder.Service.OrderService;
 
-import java.util.Date;
+import java.sql.Date;
 import  java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -24,8 +24,10 @@ public class OrderController {
     private VenueService venueService;
 
     @GetMapping("/myOrderList")
-    public String myOderList(@RequestParam("userId")Integer userId, Model m){
+    public String myOrderList(@RequestParam("userId")Integer userId, Model m){
+//        Order orderList = orderService.findOne(userId);
         List<Order> orderList = orderService.findByUserId(userId);
+//        return orderList;
         m.addAttribute("myo_list", orderList);
         return "order";
     }
@@ -71,8 +73,11 @@ public class OrderController {
         tempOrder.setVenueId(venueId);
         Venue tempVenue=venueService.findOne(venueId);
         String venueName=tempVenue.getName();
-        tempOrder.setCreateTime(new Date());
+//        java.util.Date d=new java.util.Date();
+//        java.sql.Date date=new java.sql.Date(d.getTime());
+//        tempOrder.setCreateTime();
         tempOrder.setVenueName(venueName);
+        tempOrder.setVenueTime(venueTime);
         tempOrder.setStatus("未审核");
         tempOrder.setCost(orderService.findOne(venueId).getCost());
         Order resultOrder = orderService.createOrder(tempOrder);

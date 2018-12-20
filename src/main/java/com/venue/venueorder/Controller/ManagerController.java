@@ -18,7 +18,7 @@ import  java.util.List;
 public class ManagerController {
     @Autowired
     private ManagerService managerService;
-    
+
     /*进入管理员登录界面*/
     @GetMapping("/login")
     public String index(){
