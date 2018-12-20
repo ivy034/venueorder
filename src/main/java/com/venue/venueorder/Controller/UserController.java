@@ -1,101 +1,104 @@
+ package com.venue.venueorder.Controller;
 
-12:40:14
-        甘老师 2018/12/20 12:40:14
-        待会儿来吗
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.ui.Model;
+        import org.springframework.web.bind.annotation.*;
+        import com.venue.venueorder.Service.UserService;
+        import com.venue.venueorder.DO.User;
+        import  java.util.List;
 
-        Fairy 2018/12/20 12:40:35
-        可以来
-        12:43:31
-        甘老师 2018/12/20 12:43:31
-        来
-        13:23:21
-        甘老师 2018/12/20 13:23:21
-        package com.surveyor.surveyorwebservice.Controller;
-
-import com.surveyor.surveyorwebservice.DO.User;
-import com.surveyor.surveyorwebservice.Service.UserService;
-import jdk.nashorn.internal.runtime.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.convert.ReadingConverter;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-/**
- * @param: none
- * @description: user controller
- * @author: KingJ
- * @create: 2018-11-28 00:54
- **/
 @Controller
 @RequestMapping("/user")
-public class UserController {
 
+public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping("/userList")
     public String userList(Model m){
         List<User> userList = userService.findAllUser();
-        m.addAttribute("usr_list", userList);
-        return "userInfo";
+        m.addAttribute("u_list", userList);
+        return "usermanage";
     }
-
     @GetMapping("/login")
     public String index(){
-        return "login";
+        return "loginUser";
     }
-
-    @ResponseBody
-    @GetMapping("/getInfoByID/{id}")
-    public User findUserByID(@PathVariable("id") Integer id){
-        return userService.findOne(id);
-    }
-
-    @ResponseBody
-    @GetMapping("/getInfo/{name}")
-    public User findUserByName(@PathVariable("name")String name) { return userService.findByName(name); }
 
     @GetMapping("/signIn")
-    public String signIn(@RequestParam("name") String name,
+    public String signIn(@RequestParam("name") String name,//request和表单中的name对应
                          @RequestParam("password") String password,
                          Model model) {
         User user = userService.findByNameAndPassword(name, password);
-        model.addAttribute("usr_list", user);
-        return "redirect:/user/";
+        model.addAttribute("u", user);//user传到u,
+        return "index";//html名
     }
 
-    @GetMapping("/insert")
-    public String createUser(@RequestParam("name") String name,
-                             @RequestParam("password") String password,
-                             @RequestParam("phoneNumber") String phoneNum,
-                             @RequestParam("email") String email,
-                             Model m){
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setPhoneNumber(phoneNum);
-        user.setEmail(email);
-        User new_user = userService.createUser(user);
-        m.addAttribute("usr_list", new_user);
-        return "redirect:/user/";
+    /**
+     * 删除指定id用户
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/deleteUser")
+    public Object deleteUser(@RequestParam("id")Integer id) {
+        User user = userService.findOne(id);
+        userService.deleteUserById(id);
+        return "redirect:/user/userList";
+
     }
 
-    @GetMapping("/delete")
-    public String deleteUser(@RequestParam("id") Integer id){
-        userService.deleteUser(id);
-        return "redirect:/user/";
+    /**
+     * 注册用户
+     *
+     * @param name
+     * @param password
+     * @return
+     */
+    @GetMapping("/register")
+    public String register(@RequestParam("name") String name,@RequestParam("password") String password) {
+
+        List<User> tempUser = userService.findByName(name);
+        if(tempUser==null)
+        {   User user=new User();
+            user.setPhoneNumber(name);
+            user.setPassword(password);
+            User resultUser = userService.createUser(user);
+            return "注册成功！";
+        }
+        return "注册失败，该用户名已被占用！";
+    }
+// 条件查询
+
+    /**
+     * 获取姓名是指定内容的用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getUser1/{name}")
+    public Object getUser(@PathVariable String name) {
+        List<User> userList = userService.findByName(name);
+        if (null != userList && userList.size() != 0) {
+            return userList;
+        } else {
+            return "没找到符合要求的用户";
+        }
     }
 
-    @GetMapping("/update")
+    /*修改用户信息*/
+    @GetMapping("/updateUser")
     public String changePassword(@RequestParam("id") Integer id,
-                                 @RequestParam("name") String name) {
+                                 @RequestParam("name") String name,@RequestParam("sex")String sex,@RequestParam("phoneNumber")String phoneNumber,
+                                 @RequestParam("email")String email,@RequestParam("selfIntro")String selfIntro) {
         User user = userService.findOne(id);
         user.setName(name);
-        userService.updatePassword(user);
-        return "redirect:/user/";
+        user.setPhoneNumber(phoneNumber);
+        user.setEmail(email);
+        user.setSex(sex);
+        user.setSelfIntro(selfIntro);
+        userService.update(user);
+        return "form";
     }
 
 }
