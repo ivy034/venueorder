@@ -24,13 +24,15 @@ public class UserController {
 
     /*进入用户登录界面*/
     @GetMapping("/login")
-    public String index(){
+    public String loginUser(){
         return "loginUser";
     }
 
     /*用户信息页面*/
     @GetMapping("/myInfo")
-    public  String myInfo(){
+    public  String myInfo(@RequestParam("id")Integer id,Model model){
+        User user=userService.findOne(id);
+        model.addAttribute("u", user);
         return "form";
     }
 
@@ -47,6 +49,12 @@ public class UserController {
         User user = userService.findByNameAndPassword(name, password);
         model.addAttribute("u", user);//user传到u,
         return "index";//html名
+    }
+
+    /*返回首页*/
+    @GetMapping("/index")
+    public String index(){
+        return  "index";
     }
 
     /**

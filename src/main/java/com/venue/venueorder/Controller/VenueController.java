@@ -17,7 +17,7 @@ public class VenueController {
     private VenueService venueService;
 
 
-    @GetMapping("/venueList")
+    @GetMapping("/venueAsManager")
     public String userList(Model m){
         List<Venue> venueList = venueService.findAllVenue();
         m.addAttribute("v_list", venueList);
@@ -34,7 +34,19 @@ public class VenueController {
         venueService.deleteVenueById(id);
         return "redirect:/venue/venueList";
     }
+
     /*增加场馆*/
+    @GetMapping("/addVenue")
+    public void addVenue(@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
+                           @RequestParam("cost")Integer cost,@RequestParam("address")String address,Model m)
+    {
+        Venue tempVenue = new Venue();
+        tempVenue.setTime(time);
+        tempVenue.setName(name);
+        tempVenue.setAddress(address);
+        tempVenue.setCost(cost);
+        Venue resultVenue = venueService.createVenue(tempVenue);
+    }
 
     /**
      * 修改场馆信息

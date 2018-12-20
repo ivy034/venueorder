@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.venue.venueorder.Service.OrderService;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import  java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -23,6 +24,7 @@ public class OrderController {
     private OrderService orderService;
     private VenueService venueService;
 
+    /*用户查看我的订单*/
     @GetMapping("/myOrderList")
     public String myOrderList(@RequestParam("userId")Integer userId, Model m){
 //        Order orderList = orderService.findOne(userId);
@@ -32,6 +34,7 @@ public class OrderController {
         return "order";
     }
 
+    /*管理员查看所有订单*/
     @GetMapping("/orderList")
     public String orderList(Model m){
         List<Order> orderList = orderService.findAllOrder();
@@ -50,6 +53,7 @@ public class OrderController {
             orderService.deleteOrderById(id);
             return "redirect:/order/myOrderList";
     }
+
 
     @GetMapping("/deleteOrder")
     public String deleteOrder(@RequestParam("id") Integer id) {
@@ -73,9 +77,8 @@ public class OrderController {
         tempOrder.setVenueId(venueId);
         Venue tempVenue=venueService.findOne(venueId);
         String venueName=tempVenue.getName();
-//        java.util.Date d=new java.util.Date();
-//        java.sql.Date date=new java.sql.Date(d.getTime());
-//        tempOrder.setCreateTime();
+        java.util.Date d=new java.util.Date();
+        tempOrder.setCreateTime(new Timestamp(d.getTime()));
         tempOrder.setVenueName(venueName);
         tempOrder.setVenueTime(venueTime);
         tempOrder.setStatus("未审核");
@@ -102,7 +105,7 @@ public class OrderController {
 
    /*通过订单*/
   @GetMapping("/agreeOrderStatus")
-  public String changePassword(@RequestParam("id") Integer id,Model m) {
+  public String agreeOrderStatus(@RequestParam("id") Integer id,Model m) {
       Order order = orderService.findOne(id);
       order.setStatus("已通过");
       orderService.update(order);

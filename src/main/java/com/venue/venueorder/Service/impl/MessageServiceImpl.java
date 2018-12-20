@@ -29,15 +29,6 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.deleteById(id);
     }
 
-    @Override
-    public List<Message> findByTitle(String title){
-        return messageRepository.findByTitle(title);
-    }//根据标题查询
-
-    @Override
-    public  Message findByTitleAndAuthor(String title, String author){
-        return messageRepository.findByTitleAndAuthor(title,author);
-    }
 
     @Override
     public List<Message> findAllMessage(){return messageRepository.findAll();}

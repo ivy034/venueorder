@@ -22,9 +22,6 @@ public class Message {
     @Column(name = "id")
     private Integer id;
 
-    /* 标题 */
-    @Column(name = "title")
-    public String title;
 
     /* 作者 */
     @Column(name = "author")
@@ -46,25 +43,12 @@ public class Message {
     public Message(){
     }
 
-    public Message(String title, String author){
-        this.title = title;
-        this.author = author;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getAuthor() {
