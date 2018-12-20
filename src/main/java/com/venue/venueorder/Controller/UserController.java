@@ -64,7 +64,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/deleteUser")
-    public Object deleteUser(@RequestParam("id")Integer id) {
+    public String deleteUser(@RequestParam("id")Integer id) {
         User user = userService.findOne(id);
         userService.deleteUserById(id);
         return "redirect:/user/userList";

@@ -66,11 +66,10 @@ public class OrderController {
      *
      * @param userId
      * @param venueId
-     * @param venueTime
      * @return
      */
     @GetMapping("/addOrder")
-    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId , @RequestParam("venueTime") String venueTime, Model model) {
+    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId ,  Model model) {
 
         Order tempOrder = new Order();
         tempOrder.setUserId(userId);
@@ -80,7 +79,6 @@ public class OrderController {
         java.util.Date d=new java.util.Date();
         tempOrder.setCreateTime(new Timestamp(d.getTime()));
         tempOrder.setVenueName(venueName);
-        tempOrder.setVenueTime(venueTime);
         tempOrder.setStatus("未审核");
         tempOrder.setCost(orderService.findOne(venueId).getCost());
         Order resultOrder = orderService.createOrder(tempOrder);
