@@ -122,11 +122,11 @@
                             <tr th:each="me: ${m_list}">
                                 <td th:text="${me.id}"></td>
                                 <td th:text="${me.content}"></td>
-                                <td th:text="${me.time}"></td>
+                                <td th:text="${me.announceTime}"></td>
                                 <td th:text="${me.author}"></td>
                                 <td th:text="${me.status}"></td>
                                 <td>
-                                    <a th:href="@{/message/passMessageStatus(id=${me.id})}" class="btn btn-sm btn-success" href="#">Agree</a>
+                                    <a th:href="@{/message/agreeMessageStatus(id=${me.id})}" class="btn btn-sm btn-success" href="#">Agree</a>
                                     <a th:href="@{/message/refuMessageStatus(id=${me.id})}" class="btn btn-sm btn-danger">Refuse</a>
                                 </td>
 

@@ -169,7 +169,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="/user/updateUser" class="form-horizontal" role="form" >
+                                                    <form action="@{/user/updateUser(id=${us.id},name=${us.name},sex=${us.id},phoneNumber=${us.phoneNumber},email=${us.email}),email=${us.email}),selfIntro=${us.selfIntro})}" class="form-horizontal" role="form" >
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Name</label>
                                                             <div class="col-sm-6">
@@ -216,7 +216,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Self Introduction</label>
                                                             <div class="col-sm-6">
-                                                                <textarea class="form-control" name="introduction" rows="3" placeholder="Please introduce yourself"></textarea>
+                                                                <textarea class="form-control" name="selfIntro" rows="3" placeholder="Please introduce yourself"></textarea>
                                                                 <p class="help-block">Please text less than 100 words.</p>
                                                             </div>
                                                         </div>
