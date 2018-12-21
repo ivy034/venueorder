@@ -124,11 +124,11 @@
                             <tbody id="tbody-categoris">
                             <tr th: each="o: ${myo_list}">
                                 <td th:text="${o.id}"></td>
-                                <td th:text="${o.userid}"></td>
-                                <td th:text="${o.venueid}"></td>
-                                <td th:text="${o.venuename}"></td>
+                                <td th:text="${o.userId}"></td>
+                                <td th:text="${o.venueId}"></td>
+                                <td th:text="${o.venueName}"></td>
                                 <td th:text="${o.cost}"></td>
-                                <td th:text="${o.createtime}"></td>
+                                <td th:text="${o.createTime}"></td>
                                 <td th:text="${o.status}"></td>
                                 <td><a th:href="@{/order/deleteMyOrder(id=${o.id})}" class="btn btn-sm btn-danger" onclick="deletesure()">Cancel</a></td>
 
