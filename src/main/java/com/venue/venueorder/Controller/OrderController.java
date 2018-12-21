@@ -39,13 +39,15 @@ public class OrderController {
 //        Order orderList = orderService.findOne(userId);
         List<Order> orderList = orderService.findByUserId(userId);
 //        return orderList;
+        User user=userService.findOne(userId);
         m.addAttribute("myo_list", orderList);
+        m.addAttribute("u", user);
         return "order";
     }
 
     /*管理员查看所有订单*/
     @GetMapping("/orderList")
-    public String orderList(Model m){
+    public String orderList(@RequestParam("userId")Integer userId ,Model m){
         List<Order> orderList = orderService.findAllOrder();
         m.addAttribute("o_list", orderList);
         return "ordermanage";

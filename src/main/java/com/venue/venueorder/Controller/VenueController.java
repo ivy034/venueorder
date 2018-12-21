@@ -1,6 +1,8 @@
 package com.venue.venueorder.Controller;
 
+import com.venue.venueorder.DO.User;
 import com.venue.venueorder.DO.Venue;
+import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import java.util.List;
 public class VenueController {
     @Autowired
     private VenueService venueService;
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/venueList")
@@ -26,8 +30,10 @@ public class VenueController {
     }
 
     @GetMapping("/myVenueList")
-    public String myVenueList(Model m){
+    public String myVenueList(@RequestParam("userId")Integer userId, Model m){
         List<Venue> venueList = venueService.findAllVenue();
+        User user=userService.findOne(userId);
+        m.addAttribute("u", user);
         m.addAttribute("v_list", venueList);
         return "venue";
     }

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div id="wrapper">
+    <div id="wrapper" th:each="us: ${u}">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -29,13 +29,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" th:href="@{/user/index}">Venue Order</a>
+                <a class="navbar-brand" href="index.html" th:href="@{/user/index(userId=${us.id})}">Venue Order</a>
             </div>
 
             <div class="header-right">
 
-                <a href="message.html" th:href="@{/message/myMessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="index.html" th:href="@{/user/index}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+                <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="index.html" th:href="@{/user/myInfo(userId=${us.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
                 <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -44,7 +44,7 @@
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu" th:each="us: ${u}">
+                <ul class="nav" id="main-menu" >
                     <li>
                         <div class="user-img-div">
                             <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -60,26 +60,25 @@
 
                     </li>
 
+                    <li>
+                        <a class="active-menu" href="index.html" th:href="@{/user/index(userId=${us.id})}"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
 
                     <li>
-                        <a class="active-menu" href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        <a href="form.html" th:href="@{/user/myInfo(userId=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                    </li>
+                    <li>
+                        <a href="venue.html" th:href="@{/venue/myVenueList(userId=${us.id})}"><i class="fa fa-anchor "></i>The Venue</a>
                     </li>
 
-                     <li>
-                        <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
-                    </li>
-                      <li>
-                        <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
-                    </li>
-                   
                     <li >
                         <a href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                     </li>
                     <li>
-                        <a href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
+                        <a href="news.html" th:href="@{/news/myNewsList(userId=${us.id})}"><i class="fa fa-coffee "></i>News Center</a>
                     </li>
                     <li>
-                        <a href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
+                        <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}"><i class="fa fa-edit "></i>Message Board</a>
                     </li>
                 </ul>
 

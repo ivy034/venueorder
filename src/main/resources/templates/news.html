@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" th:each="us: ${u}">
     <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -26,13 +26,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html" th:href="@{/user/index}">Venue Order</a>
+            <a class="navbar-brand" href="index.html" th:href="@{/user/index(userId=${us.id})}">Venue Order</a>
         </div>
 
         <div class="header-right">
 
-            <a href="message.html" th:href="@{/message/myMessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index.html" th:href="@{/user/index}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" th:href="@{/user/myInfo(userId=${us.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -42,7 +42,7 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" th:each="us: ${u}">
+            <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
                         <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -58,26 +58,25 @@
 
                 </li>
 
-
                 <li>
-                    <a  href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    <a href="index.html" th:href="@{/user/index(userId=${us.id})}"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
 
                 <li>
-                    <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                    <a href="form.html" th:href="@{/user/myInfo(userId=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
                 </li>
                 <li>
-                    <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
+                    <a href="venue.html" th:href="@{/venue/myVenueList(userId=${us.id})}"><i class="fa fa-anchor "></i>The Venue</a>
                 </li>
 
                 <li >
                     <a href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
+                    <a class="active-menu" href="news.html" th:href="@{/news/myNewsList(userId=${us.id})}"><i class="fa fa-coffee "></i>News Center</a>
                 </li>
                 <li>
-                    <a href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
+                    <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}"><i class="fa fa-edit "></i>Message Board</a>
                 </li>
             </ul>
 
@@ -109,55 +108,40 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="ne: ${n_list}">
-                                <td th:text="${ne.id}"></td>
-                                <td th:text="${ne.title}"></td>
-                                <td th:text="${ne.announceTime}"></td>
-                                <td th:text="${ne.author}"></td>
+                            <tr th:each="n: ${n_list}">
+                                <td th:text="${n.id}"></td>
+                                <td th:text="${n.title}"></td>
+                                <td th:text="${n.announceTime}"></td>
+                                <td th:text="${n.author}"></td>
                                 <td>
 
                                     <button class="submit" data-toggle="modal" data-target="#myModal">
                                         查看详情
                                     </button>
                                     <!-- 模态框（Modal） -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title" id="myModalLabel">
-                                                        NEWS
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                            <label class="col-sm-2 control-label">Content</label><br/>
-                                                            <p th:text="${ne.content}"></p>
-                                                        <br/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                                        <!--<div class="modal-dialog">-->
+                                            <!--<div class="modal-content">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                                                        <!--&times;-->
+                                                    <!--</button>-->
+                                                    <!--<h4 class="modal-title" id="myModalLabel">-->
+                                                        <!--NEWS-->
+                                                    <!--</h4>-->
+                                                <!--</div>-->
+                                                <!--<div class="modal-body">-->
+                                                            <!--<label class="col-sm-2 control-label">Content</label><br/>-->
+                                                            <!--<p th:text="${n.content}"></p>-->
+                                                        <!--<br/>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a href="#">
-                                        【场馆预约】中北思群堂相关通知 </a></td>
-                                <td>2018-12-02</td>
-                                <td>Ivy</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    <a href="#">
-                                        本平台关于预约问题的通知</a></td>
-                                <td>2018-12-02</td>
-                                <td>Ivy</td>
-                            </tr>
+
 
                             </tbody>
                         </table>

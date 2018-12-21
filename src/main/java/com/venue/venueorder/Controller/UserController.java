@@ -6,9 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.DO.User;
-import  java.util.List;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-@Controller
+import javax.annotation.Resource;
+import java.util.HashMap;
+import  java.util.List;
+import java.util.Map;
+
+ @Controller
 @RequestMapping("/user")
 
 public class UserController {
@@ -30,8 +36,8 @@ public class UserController {
 
     /*用户信息页面*/
     @GetMapping("/myInfo")
-    public  String myInfo(@RequestParam("id")Integer id,Model model){
-        User user=userService.findOne(id);
+    public  String myInfo(@RequestParam("userId")Integer userId,Model model){
+        User user=userService.findOne(userId);
         model.addAttribute("u", user);
         return "form";
     }
@@ -44,18 +50,36 @@ public class UserController {
 
 //    @ResponseBody
     @GetMapping("/signIn")
-    public String signIn(@RequestParam("name") String name,//request和表单中的name对应
+    public  String signIn(@RequestParam("name") String name,//request和表单中的name对应
                          @RequestParam("password") String password,
-                         Model model) {
+                         Model model, RedirectAttributes redirectAttributes) {
         User user = userService.findByNameAndPassword(name, password);
         model.addAttribute("u", user);//user传到u,
+//        redirectAttributes.addAttribute("user",user);
 //        return user;
+//        return "redirect:/user/configureThymeleafStaticVars";
         return "index";
     }
 
+//    @Resource
+//    @GetMapping("/configureThymeleafStaticVars")
+//    private String configureThymeleafStaticVars(ThymeleafViewResolver viewResolver) {
+//        if(viewResolver != null) {
+//            String name=user.getName();
+//            Map<String, Object> vars = new HashMap<>();
+//            vars.put("ctx", name);
+////            vars.put("var1", "var1");
+////            vars.put("var2", "var2");
+//            viewResolver.setStaticVariables(vars);
+//        }
+//        return "index";
+//    }
+
     /*返回首页*/
     @GetMapping("/index")
-    public String index(){
+    public String index(@RequestParam("userId")Integer userId,Model model){
+        User user=userService.findOne(userId);
+        model.addAttribute("u", user);
         return  "index";
     }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org"><head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
@@ -14,23 +14,22 @@
     <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
     <!-- GOOGLE FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <script type="text/javascript" src="../static/js/myJs.js"></script>
-
-    <script src="../static/js/jquery.min.js" th:href="@{/js/jquery.min.js}"></script>
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
-    <script>
-        function sure(){
-            var x;
-            var r=confirm("是否确定提交？");
-            if (r==true){
-                alert("提交成功!");
-            }
-        }
-    </script>
+    <!--<script type="text/javascript" src="../static/js/myJs.js"></script>-->
+    <!--<script src="../static/js/jquery.min.js" th:href="@{/js/jquery.min.js}"></script>-->
+    <!--<script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>-->
+    <!--<script>-->
+        <!--function sure(){-->
+            <!--var x;-->
+            <!--var r=confirm("是否确定提交？");-->
+            <!--if (r==true){-->
+                <!--alert("提交成功!");-->
+            <!--}-->
+        <!--}-->
+    <!--</script>-->
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper" th:each="us: ${u}">
     <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -39,13 +38,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html" th:href="@{/user/index}">Venue Order</a>
+            <a class="navbar-brand" href="index.html" th:href="@{/user/index(userId=${us.id})}">Venue Order</a>
         </div>
 
         <div class="header-right">
 
-            <a href="message.html" th:href="@{/message/myMessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index.html" th:href="@{/user/index}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" th:href="@{/user/myInfo(userId=${us.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -56,7 +55,7 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" th:each="us: ${u}">
+            <ul class="nav" id="main-menu" >
                 <li>
                     <div class="user-img-div">
                         <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -72,26 +71,24 @@
 
                 </li>
 
-
                 <li>
-                    <a  href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
-                </li>
-
-                <li>
-                    <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                    <a href="index.html" th:href="@{/user/index(userId=${us.id})}"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
+                    <a href="form.html" th:href="@{/user/myInfo(userId=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                </li>
+                <li>
+                    <a href="venue.html" th:href="@{/venue/myVenueList(userId=${us.id})}"><i class="fa fa-anchor "></i>The Venue</a>
                 </li>
 
                 <li >
                     <a href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                 </li>
                 <li>
-                    <a href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
+                    <a href="news.html" th:href="@{/news/myNewsList(userId=${us.id})}"><i class="fa fa-coffee "></i>News Center</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
+                    <a class="active-menu" href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}"><i class="fa fa-edit "></i>Message Board</a>
                 </li>
             </ul>
 
@@ -166,27 +163,27 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="me: ${m_list}">
-                                <td th:text="${me.id}"></td>
-                                <td th:text="${me.content}"></td>
-                                <td th:text="${me.time}"></td>
-                                <td th:text="${me.author}"></td>
+                            <tr th:each="m: ${m_list}">
+                                <td th:text="${m.id}"></td>
+                                <td th:text="${m.content}"></td>
+                                <td th:text="${m.announceTime}"></td>
+                                <td th:text="${m.author}"></td>
                             </tr>
 
                             </tbody>
 
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a href="#">
-                                        【场馆预约】中北思群堂相关通知 </a></td>
-                                <td>2018-12-02</td>
-                                <td>Ivy</td>
-                            </tr>
+                            <!--<tbody>-->
+                            <!--<tr>-->
+                                <!--<td>1</td>-->
+                                <!--<td>-->
+                                    <!--<a href="#">-->
+                                        <!--【场馆预约】中北思群堂相关通知 </a></td>-->
+                                <!--<td>2018-12-02</td>-->
+                                <!--<td>Ivy</td>-->
+                            <!--</tr>-->
 
 
-                            </tbody>
+                            <!--</tbody>-->
                         </table>
                     </div>
                     <hr />

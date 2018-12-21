@@ -1,6 +1,8 @@
 package com.venue.venueorder.Controller;
 
 import com.venue.venueorder.DO.News;
+import com.venue.venueorder.DO.User;
+import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.impl.NewsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,8 @@ import  java.util.List;
 public class NewsController {
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private UserService userService;
 
     /*管理员查看新闻列表*/
     @GetMapping("/NewsList")
@@ -30,8 +34,10 @@ public class NewsController {
 
     /*用户查看新闻列表*/
     @GetMapping("/myNewsList")
-    public String myNewsList(Model m){
+    public String myNewsList(@RequestParam("userId")Integer userId, Model m){
         List<News> newsList = newsService.findAllNews();
+        User user=userService.findOne(userId);
+        m.addAttribute("u", user);
         m.addAttribute("n_list", newsList);
         return "news";
     }

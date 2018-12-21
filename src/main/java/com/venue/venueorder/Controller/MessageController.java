@@ -1,6 +1,8 @@
-package com.venue.venuemessage.Controller;
+package com.venue.venueorder.Controller;
 
 import com.venue.venueorder.DO.Message;
+import com.venue.venueorder.DO.User;
+import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.impl.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private UserService userService;
+
     /*管理员查看留言列表*/
     @GetMapping("/MessageList")
     public String MessageList(Model m){
@@ -28,9 +33,11 @@ public class MessageController {
     }
 
     /*用户查看留言列表*/
-    @GetMapping("myMessageList")
-    public String myMessageList(Model m){
+    @GetMapping("/myMessageList")
+    public String myMessageList(@RequestParam("userId")Integer userId, Model m){
         List<Message> messageList = messageService.findAllMessage();
+        User user=userService.findOne(userId);
+        m.addAttribute("u", user);
         m.addAttribute("m_list", messageList);
         return "message";
     }
