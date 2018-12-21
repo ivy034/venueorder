@@ -1,7 +1,9 @@
 package com.venue.venueorder.Controller;
 
+import com.venue.venueorder.DO.Manager;
 import com.venue.venueorder.DO.User;
 import com.venue.venueorder.DO.Venue;
+import com.venue.venueorder.Service.ManagerService;
 import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class VenueController {
     private VenueService venueService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ManagerService managerService;
 
 
     @GetMapping("/venueList")
@@ -51,7 +55,25 @@ public class VenueController {
         return "redirect:/venue/venueList";
     }
 
-    /*增加场馆*/
+    /*跳转到添加页面*/
+    @GetMapping("/venueAdd")
+    public  String venueTo(@RequestParam("managerId")Integer managerId,Model m)
+    {
+        Manager manager=managerService.findOne(managerId);
+        m.addAttribute("m",manager);
+        return "venueadd";
+    }
+
+    /*跳转到修改页面*/
+    @GetMapping("venueUpdate")
+    public String venueToo(@RequestParam("managerId")Integer managerId,Model m)
+    {
+        Manager manager=managerService.findOne(managerId);
+        m.addAttribute("m",manager);
+        return "venueupdate";
+    }
+
+    /*确认添加场馆*/
     @GetMapping("/addVenue")
     public String addVenue(@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
                            @RequestParam("cost")Integer cost,@RequestParam("address")String address,Model m)
@@ -67,7 +89,7 @@ public class VenueController {
     }
 
     /**
-     * 修改场馆信息
+     * 确认修改场馆
      *
      * @param id
      * @param address
