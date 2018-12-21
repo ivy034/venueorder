@@ -58,7 +58,7 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" th:each="ma: ${m}">
+            <ul class="nav" id="main-menu" th:each="m: ${m}">
                 <li>
                     <div class="user-img-div">
                         <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -66,7 +66,7 @@
                         <div class="inner-text" >
                             Welcome, <br />
 
-                            <p th:text="${ma.name}">name</p>
+                            <p th:text="${m.name}">name</p>
 
                             <br />
                         </div>
@@ -178,108 +178,12 @@
             </div>
         </div>
     </div>
-    <br/>
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-
-            <form action="/venue/updateVenue(id=${ve.id}),address=${ve.address}),name=${ve.name}),time=${ve.time}),cost=${ve.cost})" class="form-horizontal" role="form" >
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Venue Name</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control col-sm-6" name="name" >
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Address</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control col-sm-6" name="address"  >
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Phone number</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="phoneNumber" >
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Price</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="price" id="price" >
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Time</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="time" >
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Venue Introduction</label>
-                    <div class="col-sm-6">
-                        <textarea class="form-control" name="introduction" rows="6" ></textarea>
-                    </div>
-                </div>
-                <br/>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary" onclick="sure()">
-                        提交更改
-                    </button>
-                </div>
-            </form>
-
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-</div>
-<a th:href="@{/venue/deleteVenue(id=${ve.id})}"  class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</a>
-</td>
-</tr>
-</tbody>
-<tbody>
-<tr >
-    <td>1</td>
-    <td>20010109</td>
-    <td>HALL</td>
-    <td>$10/h</td>
-    <td>124353531531</td>
-    <td>
-        <a target="_blank" class="btn btn-info "  href="#">Edit</a>&nbsp;&nbsp;
-        <button class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</button>
-    </td>
-</tr>
-
-
-
-</tbody>
-</table>
-</div>
-<hr />
-
-</div>
 </div>
 
 
 
 
 
-
-
-
-</div>
-<!-- /. PAGE INNER  -->
-</div>
-<!-- /. PAGE WRAPPER  -->
-</div>
-<!-- /. WRAPPER  -->
 
 <div id="footer-sec" align="center">
     Copyright &copy; 2018 VenueOrder.

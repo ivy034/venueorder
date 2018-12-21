@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
 
-
+    <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
@@ -24,23 +23,14 @@
                 alert("删除成功!");
             }
         }
-        function agree(){
+        function sure(){
             var x;
-            var r=confirm("是否确定通过？");
+            var r=confirm("是否确定提交？");
             if (r==true){
                 alert("提交成功!");
             }
         }
-        function refuse(){
-            var x;
-            var r=confirm("是否确定拒绝？");
-            if (r==true){
-                alert("提交成功!");
-            }
-        }
-
     </script>
-
 </head>
 
 <body>
@@ -97,10 +87,10 @@
                 </li>
 
                 <li>
-                    <a class="active-menu" href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
+                    <a href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
-                    <a href="newsmanage.html" th:href="@{/news/newsList}" ><i class="fa fa-coffee "></i>News Management</a>
+                    <a class="active-menu" href="newsmanage.html" th:href="@{/news/newsList}" ><i class="fa fa-coffee "></i>News Management</a>
                 </li>
                 <li>
                     <a href="messagemanage.html" th:href="@{/message/messageList}" ><i class="fa fa-edit "></i>Message Management</a>
@@ -115,76 +105,89 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-head-line">ORDER MANAGEMENT</h1>
-                    <h1 class="page-subhead-line">All orders are listed as follows. </h1>
+                    <h1 class="page-head-line">NEWS CENTER</h1>
+                    <h1 class="page-subhead-line">The news are listed as follows. </h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>User ID</th>
-                                <th>Venue ID</th>
-                                <th>Venue Name</th>
-                                <th>Price</th>
-                                <th>Create Time</th>
-                                <th>Status</th>
-                                <th>To Do</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody-categoris">
-                            <tr th:each="o: ${o_list}">
-                                <td th:text="${o.id}"></td>
-                                <td th:text="${o.userId}"></td>
-                                <td th:text="${o.venueId}"></td>
-                                <td th:text="${o.venueName}"></td>
-                                <td th:text="${o.cost}"></td>
-                                <td th:text="${o.createTime}"></td>
-                                <td th:text="${o.status}"></td>
-                                <td>
-                                    <a th:href="@{/order/agreeOrderStatus(id=${o.id})}" class="btn btn-sm btn-success" onclick="sure()">Agree</a>
-                                    <a th:href="@{/order/refuOrderStatus(id=${o.id})}" class="btn btn-sm btn-danger">Refuse</a>
-                                </td>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            VENUE
+                        </div>
+                        <div class="panel-body form-horizontal">
+                                                    <form action="/news/addNews" class="form-horizontal" role="form" >
 
-                            </tr>
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Title</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="title" class="form-control col-sm-6" id="title" >
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Text</label>
+                                                            <div class="col-sm-6">
+                                                                <textarea class="form-control" name="content" rows="6" ></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <br/>
+                                                        <div class="col-sm-offset-2 col-sm-3">
 
-                            </tbody>
+                                                            <button type="submit" class="btn btn-primary" onclick="sure()">
+                                                                提交更改
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal -->
+                                        </div>
+                                    </div>
+                                   <!--</td>-->
+                            <!--</tr>-->
+                            <!--</tbody>-->
                             <!--<tbody>-->
-                            <!--<tr class="danger">-->
-                                <!--<td>1</td>-->
-                                <!--<td>20010109</td>-->
-                                <!--<td>CD</td>-->
-                                <!--<td>Hall</td>-->
-                                <!--<td>2018-12-22 8:00-12:00</td>-->
-                                <!--<td>2018-12-02</td>-->
-                                <!--<td>待审核</td>-->
-                                <!--<td>-->
-                                    <!--<button class="btn btn-sm btn-success" href="#">Agree</button>-->
-                                    <!--<button class="btn btn-sm btn-danger">Refuse</button>-->
-                                <!--</td>-->
+                            <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td>-->
+                            <!--<a href="news1.html">-->
+                            <!--【场馆预约】中北思群堂相关通知 </a></td>-->
+                            <!--<td>2018-12-02</td>-->
+                            <!--<td>Ivy</td>-->
+                            <!--<td>-->
+                            <!--<a target="_blank" class="btn btn-info "  href="#">Edit</a>&nbsp;&nbsp;-->
+                            <!--<button class="btn btn-sm btn-danger" onclick="deletesure()">Delete</button>-->
+                            <!--</td>-->
                             <!--</tr>-->
-                            <!--<tr >-->
-                                <!--<td>2</td>-->
-                                <!--<td>20010109</td>-->
-                                <!--<td>CD</td>-->
-                                <!--<td>Hall</td>-->
-                                <!--<td>2018-12-12</td>-->
-                                <!--<td>2018-12-02</td>-->
-                                <!--<td>已结束</td>-->
-                                <!--<td>-->
-                                    <!--<button class="btn btn-sm btn-success" href="#" disabled>Agree</button>-->
-                                    <!--<button class="btn btn-sm btn-danger" disabled>Refuse</button>-->
-                                <!--</td>-->
+                            <!--<tr>-->
+                            <!--<td>2</td>-->
+                            <!--<td>-->
+                            <!--<a href="#">-->
+                            <!--本平台关于预约问题的通知</a></td>-->
+                            <!--<td>2018-12-02</td>-->
+                            <!--<td>Ivy</td>-->
+                            <!--<td>-->
+                            <!--<a target="_blank" class="btn btn-info "  href="#">Edit</a>&nbsp;&nbsp;-->
+                            <!--<button class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</button>-->
+                            <!--</td>-->
                             <!--</tr>-->
-
-
+                            <!--<tr>-->
+                            <!--<td>3</td>-->
+                            <!--<td>-->
+                            <!--<a href="#">-->
+                            <!--中北大学生活动中心预约上线，10月13日开始试运行</a></td>-->
+                            <!--<td>2018-12-11</td>-->
+                            <!--<td>Fairy</td>-->
+                            <!--<td>-->
+                            <!--<a target="_blank" class="btn btn-info "  href="#">Edit</a>&nbsp;&nbsp;-->
+                            <!--<button class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</button>-->
+                            <!--</td>-->
+                            <!--</tr>-->
 
                             <!--</tbody>-->
-                        </table>
                     </div>
                     <hr />
 
@@ -193,12 +196,6 @@
 
 
 
-        </div>
-        <!-- /. PAGE INNER  -->
-    </div>
-    <!-- /. PAGE WRAPPER  -->
-</div>
-<!-- /. WRAPPER  -->
 <div id="footer-sec" align="center">
     Copyright &copy; 2018 VenueOrder.
 </div>

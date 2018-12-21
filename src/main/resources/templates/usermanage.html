@@ -59,7 +59,7 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" th:each="ma: ${m}">
+            <ul class="nav" id="main-menu" th:each="m: ${m}">
                 <li>
                     <div class="user-img-div">
                         <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -67,7 +67,7 @@
                         <div class="inner-text" >
                             Welcome, <br />
 
-                            <p th:text="${ma.name}">name</p>
+                            <p th:text="${m.name}">name</p>
 
                             <br />
                         </div>

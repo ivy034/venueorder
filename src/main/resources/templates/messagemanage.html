@@ -52,7 +52,7 @@
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu" th:each="ma: ${m}">
+            <ul class="nav" id="main-menu" th:each="m: ${m}">
                 <li>
                     <div class="user-img-div">
                         <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
@@ -60,7 +60,7 @@
                         <div class="inner-text" >
                             Welcome, <br />
 
-                            <p th:text="${ma.name}">name</p>
+                            <p th:text="${m.name}">name</p>
 
                             <br />
                         </div>
@@ -133,37 +133,37 @@
                             </tr>
 
                             </tbody>
-                            <tbody>
-                            <tr class="danger">
-                                <td>1</td>
-                                <td>20010109</td>
-                                <td>CD</td>
-                                <td>Hall</td>
-                                <td>2018-12-22 8:00-12:00</td>
-                                <td>2018-12-02</td>
-                                <td>待审核</td>
-                                <td>
-                                    <button class="btn btn-sm btn-success" href="#">Agree</button>
-                                    <button class="btn btn-sm btn-danger">Refuse</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>2</td>
-                                <td>20010109</td>
-                                <td>CD</td>
-                                <td>Hall</td>
-                                <td>2018-12-12</td>
-                                <td>2018-12-02</td>
-                                <td>已结束</td>
-                                <td>
-                                    <button class="btn btn-sm btn-success" href="#" disabled>Agree</button>
-                                    <button class="btn btn-sm btn-danger" disabled>Refuse</button>
-                                </td>
-                            </tr>
+                            <!--<tbody>-->
+                            <!--<tr class="danger">-->
+                                <!--<td>1</td>-->
+                                <!--<td>20010109</td>-->
+                                <!--<td>CD</td>-->
+                                <!--<td>Hall</td>-->
+                                <!--<td>2018-12-22 8:00-12:00</td>-->
+                                <!--<td>2018-12-02</td>-->
+                                <!--<td>待审核</td>-->
+                                <!--<td>-->
+                                    <!--<button class="btn btn-sm btn-success" href="#">Agree</button>-->
+                                    <!--<button class="btn btn-sm btn-danger">Refuse</button>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr >-->
+                                <!--<td>2</td>-->
+                                <!--<td>20010109</td>-->
+                                <!--<td>CD</td>-->
+                                <!--<td>Hall</td>-->
+                                <!--<td>2018-12-12</td>-->
+                                <!--<td>2018-12-02</td>-->
+                                <!--<td>已结束</td>-->
+                                <!--<td>-->
+                                    <!--<button class="btn btn-sm btn-success" href="#" disabled>Agree</button>-->
+                                    <!--<button class="btn btn-sm btn-danger" disabled>Refuse</button>-->
+                                <!--</td>-->
+                            <!--</tr>-->
 
 
 
-                            </tbody>
+                            <!--</tbody>-->
                         </table>
                     </div>
                     <hr />

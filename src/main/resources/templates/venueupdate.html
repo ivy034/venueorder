@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venue order</title>
 
-
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
@@ -14,32 +13,23 @@
     <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
     <!--CUSTOM MAIN STYLES-->
     <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
-    <!-- GOOGLE FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- GOOGLE FONTS-->
     <script>
+        function sure(){
+            var x;
+            var r=confirm("是否确定提交？");
+            if (r==true){
+                alert("提交成功!");
+            }
+        }
         function deletesure(){
             var x;
             var r=confirm("确认删除？");
             if (r==true){
                 alert("删除成功!");
             }
-        }
-        function agree(){
-            var x;
-            var r=confirm("是否确定通过？");
-            if (r==true){
-                alert("提交成功!");
-            }
-        }
-        function refuse(){
-            var x;
-            var r=confirm("是否确定拒绝？");
-            if (r==true){
-                alert("提交成功!");
-            }
-        }
-
-    </script>
+        }</script>
 
 </head>
 
@@ -93,11 +83,11 @@
                 </li>
 
                 <li>
-                    <a href="venuemanage.html" th:href="@{/venue/venueList}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                    <a class="active-menu" href="venuemanage.html" th:href="@{/venue/venueList}" ><i class="fa fa-anchor "></i>Venue Management</a>
                 </li>
 
                 <li>
-                    <a class="active-menu" href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
+                    <a href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
                     <a href="newsmanage.html" th:href="@{/news/newsList}" ><i class="fa fa-coffee "></i>News Management</a>
@@ -107,6 +97,7 @@
                 </li>
             </ul>
 
+
         </div>
 
     </nav>
@@ -115,97 +106,88 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-head-line">ORDER MANAGEMENT</h1>
-                    <h1 class="page-subhead-line">All orders are listed as follows. </h1>
+                    <h1 class="page-head-line">VENUE MANAGEMENT</h1>
+                    <h1 class="page-subhead-line">All venues of the platform are listed as follows. </h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>User ID</th>
-                                <th>Venue ID</th>
-                                <th>Venue Name</th>
-                                <th>Price</th>
-                                <th>Create Time</th>
-                                <th>Status</th>
-                                <th>To Do</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody-categoris">
-                            <tr th:each="o: ${o_list}">
-                                <td th:text="${o.id}"></td>
-                                <td th:text="${o.userId}"></td>
-                                <td th:text="${o.venueId}"></td>
-                                <td th:text="${o.venueName}"></td>
-                                <td th:text="${o.cost}"></td>
-                                <td th:text="${o.createTime}"></td>
-                                <td th:text="${o.status}"></td>
-                                <td>
-                                    <a th:href="@{/order/agreeOrderStatus(id=${o.id})}" class="btn btn-sm btn-success" onclick="sure()">Agree</a>
-                                    <a th:href="@{/order/refuOrderStatus(id=${o.id})}" class="btn btn-sm btn-danger">Refuse</a>
-                                </td>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            VENUE
+                        </div>
+                        <div class="panel-body form-horizontal">
+                                    <form action="/venue/updateVenue" class="form-horizontal" role="form" >
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Venue Name</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control col-sm-6" name="name" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Address</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control col-sm-6" name="address"  >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Phone number</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="phoneNumber" id="phone" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Price</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="price" id="price" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Time</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="time" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Venue Introduction</label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="6" ></textarea>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="col-sm-offset-2 col-sm-3">
 
-                            </tr>
-
-                            </tbody>
-                            <!--<tbody>-->
-                            <!--<tr class="danger">-->
-                                <!--<td>1</td>-->
-                                <!--<td>20010109</td>-->
-                                <!--<td>CD</td>-->
-                                <!--<td>Hall</td>-->
-                                <!--<td>2018-12-22 8:00-12:00</td>-->
-                                <!--<td>2018-12-02</td>-->
-                                <!--<td>待审核</td>-->
-                                <!--<td>-->
-                                    <!--<button class="btn btn-sm btn-success" href="#">Agree</button>-->
-                                    <!--<button class="btn btn-sm btn-danger">Refuse</button>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr >-->
-                                <!--<td>2</td>-->
-                                <!--<td>20010109</td>-->
-                                <!--<td>CD</td>-->
-                                <!--<td>Hall</td>-->
-                                <!--<td>2018-12-12</td>-->
-                                <!--<td>2018-12-02</td>-->
-                                <!--<td>已结束</td>-->
-                                <!--<td>-->
-                                    <!--<button class="btn btn-sm btn-success" href="#" disabled>Agree</button>-->
-                                    <!--<button class="btn btn-sm btn-danger" disabled>Refuse</button>-->
-                                <!--</td>-->
-                            <!--</tr>-->
+                                            <button type="submit" class="btn btn-primary" onclick="sure()">
+                                                提交更改
+                                            </button>
+                                        </div>
+                                    </form>
 
 
-
-                            <!--</tbody>-->
-                        </table>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
                     </div>
-                    <hr />
-
                 </div>
             </div>
+            <br/>
+
+                    </div>
 
 
-
-        </div>
-        <!-- /. PAGE INNER  -->
-    </div>
-    <!-- /. PAGE WRAPPER  -->
-</div>
-<!-- /. WRAPPER  -->
 <div id="footer-sec" align="center">
     Copyright &copy; 2018 VenueOrder.
 </div>
 <!-- /. FOOTER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-
 <script src="../static/js/jquery-1.10.2.js" th:href="@{/js/jquery-1.10.2.js}"></script>
 <!-- BOOTSTRAP SCRIPTS -->
 <script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
