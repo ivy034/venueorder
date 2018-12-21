@@ -152,88 +152,88 @@
                             <br role="form" >
                             <div class="row">
                                 <div class="col-md-offset-9">
-                                    <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+                                    <a href="formedit.html" th:href="@{/user/formedit(id=${us.id})}" class="btn btn-primary btn-md" >
                                         修改个人资料
-                                    </button>
+                                    </a>
                                     <!-- 模态框（Modal） -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                        &times;
-                                                    </button>
-                                                    <h4 class="modal-title" id="myModalLabel">
-                                                        PROFILE
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="/user/updateUser" class="form-horizontal" role="form" >
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Name</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" required="true" class="form-control col-sm-6" name="name" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">
-                                                            </div>
-                                                        </div>
-                                                        <br/>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Sex</label>
-                                                            <div class="radio col-sm-6">
-                                                                <div class="radio">
-                                                                    <label>
-                                                                        <input type="radio" required="true" name="sex" id="optionsRadios6" value="male" checked>Male
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label>
-                                                                        <input type="radio" required="true" name="sex" id="optionsRadios5" value="female">Female
-                                                                    </label>
-                                                                </div>
+                                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                                        <!--<div class="modal-dialog">-->
+                                            <!--<div class="modal-content">-->
+                                                <!--<div class="modal-header">-->
+                                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                                                        <!--&times;-->
+                                                    <!--</button>-->
+                                                    <!--<h4 class="modal-title" id="myModalLabel">-->
+                                                        <!--PROFILE-->
+                                                    <!--</h4>-->
+                                                <!--</div>-->
+                                                <!--<div class="modal-body">-->
+                                                    <!--<form action="/user/updateUser" class="form-horizontal" role="form" >-->
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-sm-2 control-label">Name</label>-->
+                                                            <!--<div class="col-sm-6">-->
+                                                                <!--<input type="text" required="true" class="form-control col-sm-6" name="name" id="name" onblur="isChinese(this.value)" placeholder="请输入中文！">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                        <!--<br/>-->
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-sm-2 control-label">Sex</label>-->
+                                                            <!--<div class="radio col-sm-6">-->
+                                                                <!--<div class="radio">-->
+                                                                    <!--<label>-->
+                                                                        <!--<input type="radio" required="true" name="sex" id="optionsRadios6" value="male" checked>Male-->
+                                                                    <!--</label>-->
+                                                                <!--</div>-->
+                                                                <!--<div class="radio">-->
+                                                                    <!--<label>-->
+                                                                        <!--<input type="radio" required="true" name="sex" id="optionsRadios5" value="female">Female-->
+                                                                    <!--</label>-->
+                                                                <!--</div>-->
 
-                                                            </div>
-                                                        </div>
-                                                        <br/>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Phone number</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" required="true" class="form-control" name="phoneNumber" id="phone" onblur="isMobile(this.value)">
-                                                            </div>
-                                                        </div>
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                        <!--<br/>-->
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-sm-2 control-label">Phone number</label>-->
+                                                            <!--<div class="col-sm-6">-->
+                                                                <!--<input type="text" required="true" class="form-control" name="phoneNumber" id="phone" onblur="isMobile(this.value)">-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
 
-                                                        <br/>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Email</label>
-                                                            <form name="myForm" >
+                                                        <!--<br/>-->
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-sm-2 control-label">Email</label>-->
+                                                            <!--<form name="myForm" >-->
 
-                                                                <div class="col-sm-6">
-                                                                    <input type="email" required="true" class="form-control" name="email" id="email" onblur="isEmail()" >
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                                <!--<div class="col-sm-6">-->
+                                                                    <!--<input type="email" required="true" class="form-control" name="email" id="email" onblur="isEmail()" >-->
+                                                                <!--</div>-->
+                                                            <!--</form>-->
+                                                        <!--</div>-->
 
-                                                        <br/>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-2 control-label">Self Introduction</label>
-                                                            <div class="col-sm-6">
-                                                                <textarea class="form-control" name="selfIntro" rows="3" placeholder="Please introduce yourself"></textarea>
-                                                                <p class="help-block">Please text less than 100 words.</p>
-                                                            </div>
-                                                        </div>
-                                                        <br/>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                                            </button>
-                                                            <button type="submit" class="btn btn-primary" onclick="sure()">
-                                                                提交更改
-                                                            </button>
-                                                        </div>
-                                                        </form>
+                                                        <!--<br/>-->
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-sm-2 control-label">Self Introduction</label>-->
+                                                            <!--<div class="col-sm-6">-->
+                                                                <!--<textarea class="form-control" name="selfIntro" rows="3" placeholder="Please introduce yourself"></textarea>-->
+                                                                <!--<p class="help-block">Please text less than 100 words.</p>-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                        <!--<br/>-->
+                                                        <!--<div class="modal-footer">-->
+                                                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+                                                            <!--</button>-->
+                                                            <!--<button type="submit" class="btn btn-primary" onclick="sure()">-->
+                                                                <!--提交更改-->
+                                                            <!--</button>-->
+                                                        <!--</div>-->
+                                                        <!--</form>-->
 
 
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal -->
-                                    </div>
-                                </div>
+                                            <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                                        <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 </div></div>
                             <div class="row" th:each="us: ${u}">
                             <div class="form-group" >

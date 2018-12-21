@@ -108,45 +108,45 @@
             </div>
             <div class="row">
                 <div class="col-md-offset-10">
-                    <button class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal">
+                    <a href="messageedit.html" th:href="@{/message/messagedit(id=${us.id})}" class="btn btn-success btn-md" >
                         我要留言
-                    </button>
+                    </a>
 
                     <!-- 模态框（Modal） -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        MESSAGE
-                                    </h4>
-                                </div>
-                                <div class="modal-body" th:each="us: ${u}">
-                                    <form action="/message/addMessage" class="form-horizontal" role="form" >
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Content</label>
-                                            <div class="col-sm-6">
-                                                <textarea class="form-control" name="content" required="true" rows="5" placeholder="I want to say..."></textarea>
-                                                <p class="help-block">Please text less than 100 words.</p>
-                                            </div>
-                                        </div>
-                                        <br/><div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                        </button>
-                                        <a class="btn btn-primary" onclick="sure()">
-                                            提交
-                                        </a>
-                                    </div>
-                                    </form>
+                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                        <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                                        <!--&times;-->
+                                    <!--</button>-->
+                                    <!--<h4 class="modal-title" id="myModalLabel">-->
+                                        <!--MESSAGE-->
+                                    <!--</h4>-->
+                                <!--</div>-->
+                                <!--<div class="modal-body" th:each="us: ${u}">-->
+                                    <!--<form action="/message/addMessage" class="form-horizontal" role="form" >-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Content</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<textarea class="form-control" name="content" required="true" rows="5" placeholder="I want to say..."></textarea>-->
+                                                <!--<p class="help-block">Please text less than 100 words.</p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/><div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+                                        <!--</button>-->
+                                        <!--<a class="btn btn-primary" onclick="sure()">-->
+                                            <!--提交-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--</form>-->
 
 
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal -->
-                        </div>
-                    </div>
+                                <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                            <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
             <br/>
