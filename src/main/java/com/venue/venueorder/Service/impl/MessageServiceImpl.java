@@ -29,7 +29,6 @@ public class MessageServiceImpl implements MessageService {
         messageRepository.deleteById(id);
     }
 
-
     @Override
     public List<Message> findAllMessage(){return messageRepository.findAll();}
 

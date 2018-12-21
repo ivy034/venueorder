@@ -10,11 +10,9 @@ public interface MessageService {
 
     List<Message> findAllMessage();
 
-
     Message createMessage(Message news);
 
     void deleteMessageById(Integer id);
-
 
     void update(Message message);
 }

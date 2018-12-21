@@ -37,6 +37,10 @@ public class Venue {
     @Column(name = "cost")
     private Integer cost;
 
+    /*联系电话*/
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     public Venue(){
     }
 
@@ -82,5 +86,13 @@ public class Venue {
 
     public void setCost(Integer cost) {
         this.cost = cost;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

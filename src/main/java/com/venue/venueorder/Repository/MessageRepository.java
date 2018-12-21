@@ -15,6 +15,5 @@ import java.util.List;
  * @create: 2018-11-17 17:15
  **/
 public interface MessageRepository extends JpaRepository<Message, Integer> {
-    List<Message> findByTitle(String title);//根据标题查询
-    Message findByTitleAndAuthor(String title,String author);
+
 }

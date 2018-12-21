@@ -42,13 +42,15 @@ public class UserController {
         return "login";
     }
 
+//    @ResponseBody
     @GetMapping("/signIn")
     public String signIn(@RequestParam("name") String name,//request和表单中的name对应
                          @RequestParam("password") String password,
                          Model model) {
         User user = userService.findByNameAndPassword(name, password);
         model.addAttribute("u", user);//user传到u,
-        return "index";//html名
+//        return user;
+        return "index";
     }
 
     /*返回首页*/

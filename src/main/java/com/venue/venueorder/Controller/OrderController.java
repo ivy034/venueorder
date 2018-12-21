@@ -1,7 +1,9 @@
 package com.venue.venueorder.Controller;
 
 import com.venue.venueorder.DO.Order;
+import com.venue.venueorder.DO.User;
 import com.venue.venueorder.DO.Venue;
+import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.VenueService;
 import com.venue.venueorder.Service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +25,18 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     private VenueService venueService;
+    private UserService userService;
 
     /*用户查看我的订单*/
+//    @ResponseBody
     @GetMapping("/myOrderList")
     public String myOrderList(@RequestParam("userId")Integer userId, Model m){
 //        Order orderList = orderService.findOne(userId);
         List<Order> orderList = orderService.findByUserId(userId);
 //        return orderList;
+        User user=userService.findOne(userId);
         m.addAttribute("myo_list", orderList);
+        m.addAttribute("u", user);
         return "order";
     }
 
