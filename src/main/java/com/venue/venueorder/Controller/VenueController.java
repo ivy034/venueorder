@@ -21,6 +21,7 @@ public class VenueController {
     public String venueList(Model m){
         List<Venue> venueList = venueService.findAllVenue();
         m.addAttribute("v_list", venueList);
+
         return "venuemanage";
     }
 
@@ -46,7 +47,7 @@ public class VenueController {
 
     /*增加场馆*/
     @GetMapping("/addVenue")
-    public void addVenue(@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
+    public String addVenue(@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
                            @RequestParam("cost")Integer cost,@RequestParam("address")String address,Model m)
     {
         Venue tempVenue = new Venue();
@@ -54,7 +55,9 @@ public class VenueController {
         tempVenue.setName(name);
         tempVenue.setAddress(address);
         tempVenue.setCost(cost);
+        tempVenue.setPhoneNumber(phoneNumber);
         Venue resultVenue = venueService.createVenue(tempVenue);
+        return "redirect:/venue/venueList";
     }
 
     /**
@@ -68,12 +71,13 @@ public class VenueController {
 
     @RequestMapping(value = "/updateVenue")
     public String addVenue(@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
-                           @RequestParam("cost") Integer cost) {
+                           @RequestParam("cost") Integer cost,@RequestParam("phoneNumber")String phoneNumber) {
         Venue tempVenue = venueService.findOne(id);
         tempVenue.setAddress(address);
         tempVenue.setCost(cost);
         tempVenue.setTime(time);
         tempVenue.setName(name);
+        tempVenue.setPhoneNumber(phoneNumber);
         Venue resultVenue = venueService.createVenue(tempVenue);
         return "redirect:/venue/venueList";
     }

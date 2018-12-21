@@ -29,7 +29,7 @@ public class NewsController {
     }
 
     /*用户查看新闻列表*/
-    @GetMapping("/myNewsList\"")
+    @GetMapping("/myNewsList")
     public String myNewsList(Model m){
         List<News> newsList = newsService.findAllNews();
         m.addAttribute("n_list", newsList);
@@ -45,10 +45,8 @@ public class NewsController {
      */
     @GetMapping("/deleteNews")
     public String  deleteNews(@RequestParam("id")Integer id) {
-        News news = newsService.findOne(id);
         newsService.deleteNewsById(id);
         return "redirect:/news/NewsList";
-
     }
 
     /**

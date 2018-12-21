@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.venue.venueorder.Service.OrderService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -24,7 +25,11 @@ import java.util.zip.DataFormatException;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
     private VenueService venueService;
+
+    @Autowired
     private UserService userService;
 
     /*用户查看我的订单*/
@@ -34,9 +39,7 @@ public class OrderController {
 //        Order orderList = orderService.findOne(userId);
         List<Order> orderList = orderService.findByUserId(userId);
 //        return orderList;
-        User user=userService.findOne(userId);
         m.addAttribute("myo_list", orderList);
-        m.addAttribute("u", user);
         return "order";
     }
 
@@ -55,8 +58,9 @@ public class OrderController {
      * @return
      */
     @GetMapping("/deleteMyOrder")
-    public String deleteMyOrder(@RequestParam("id") Integer id) {
+    public String deleteMyOrder(@RequestParam("id") Integer id, @RequestParam("userId")Integer userId, RedirectAttributes redirectAttributes) {
             orderService.deleteOrderById(id);
+            redirectAttributes.addAttribute("userId",userId);
             return "redirect:/order/myOrderList";
     }
 

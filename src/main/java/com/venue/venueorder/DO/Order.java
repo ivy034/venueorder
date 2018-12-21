@@ -1,6 +1,8 @@
 package com.venue.venueorder.DO;
 
+import com.venue.venueorder.Service.VenueService;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
