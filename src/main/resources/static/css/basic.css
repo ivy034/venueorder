@@ -44,7 +44,7 @@ body {
     color: #000;
     font-weight: 800;
     padding-bottom: 20px;
-    border-bottom: 2px solid #2a5788;
+    border-bottom: 2px solid #00CA79;
     margin-bottom: 10px;
 }
 
@@ -54,13 +54,13 @@ body {
     padding-bottom: 20px;
     font-style:italic;
     margin-bottom:30px;
-    border-bottom:1px dashed #2a5788;
+    border-bottom:1px dashed #00CA79;
 
 }
 
 
 /*==============================================
-    MENU STYLES
+    MENU STYLES    
     =============================================*/
 
 
@@ -108,7 +108,7 @@ body {
     }
 
 .active-menu {
-    background-color: #2a5788!important;
+    background-color: #00CA79!important;
 }
 .active-menu-top {
     background-color: #000!important;
@@ -184,7 +184,7 @@ body {
 }
 
 .navbar-cls-top {
-    background: #2a5788;
+    background: #00CA79;
     border-bottom: none;
 }
 
@@ -198,7 +198,7 @@ body {
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #2a5788;
+    background-color: #00CA79;
 }
 
 .navbar-default .navbar-toggle {

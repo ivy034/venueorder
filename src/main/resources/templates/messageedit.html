@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue order</title>
+
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}"/>
+    <!-- GOOGLE FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../static/js/myJs.js"></script>
+
+    <script src="../static/js/jquery.min.js" th:href="@{/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+    <script>
+        function sure(){
+            var x;
+            var r=confirm("是否确定提交？");
+            if (r==true){
+                alert("提交成功!");
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" th:href="@{/user/index}">Venue Order</a>
+        </div>
+
+        <div class="header-right">
+
+            <a href="message.html" th:href="@{/message/myMessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index.html" th:href="@{/user/index}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+
+        </div>
+    </nav>
+
+    <!-- /. NAV TOP  -->
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu" th:each="us: ${u}">
+                <li>
+                    <div class="user-img-div">
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
+
+                        <div class="inner-text" >
+                            Welcome, <br />
+
+                            <p th:text="${us.name}">name</p>
+
+                            <br />
+                        </div>
+                    </div>
+
+                </li>
+
+
+                <li>
+                    <a  href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                </li>
+                <li>
+                    <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
+                </li>
+
+                <li >
+                    <a href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
+                </li>
+                <li>
+                    <a href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-head-line">MESSAGE BOARD</h1>
+                    <h1 class="page-subhead-line">This is message board. </h1>
+
+                </div>
+            </div>
+                    <!-- 模态框（Modal） -->
+                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                    <!--<div class="modal-dialog">-->
+                    <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                    <!--&times;-->
+                    <!--</button>-->
+                    <!--<h4 class="modal-title" id="myModalLabel">-->
+                    <!--MESSAGE-->
+                    <!--</h4>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body" th:each="us: ${u}">-->
+                    <!--<form action="/message/addMessage" class="form-horizontal" role="form" >-->
+                    <!--<div class="form-group">-->
+                    <!--<label class="col-sm-2 control-label">Content</label>-->
+                    <!--<div class="col-sm-6">-->
+                    <!--<textarea class="form-control" name="content" required="true" rows="5" placeholder="I want to say..."></textarea>-->
+                    <!--<p class="help-block">Please text less than 100 words.</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<br/><div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+                    <!--</button>-->
+                    <!--<a class="btn btn-primary" onclick="sure()">-->
+                    <!--提交-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</form>-->
+
+
+                    <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                    <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+                    <!--</div>-->
+                    <!--</div>-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            MESSAGE
+                        </div>
+                        <div class="panel-body form-horizontal">
+                            <form action="/message/addMessage">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Content</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" name="content" required="true" rows="5" placeholder="I want to say..."></textarea>
+                                        <p class="help-block">Please text less than 100 words.</p>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="col-sm-offset-2 col-sm-3">
+                                <button type="submit" class="btn btn-primary" onclick="sure()">
+                                    提交
+                                </button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <hr />
+
+                    </div>
+                </div>
+
+            </div>
+                </div>
+            </div>
+            <br/>
+
+    </div>
+    <div id="footer-sec" align="center">
+        Copyright &copy; 2018 VenueOrder.
+    </div>
+
+</body>
+</html>

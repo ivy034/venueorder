@@ -113,79 +113,79 @@
 
             <div class="row">
                 <div class="col-lg-offset-10">
-                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal">Add New Venue</button>
+                    <a href="venueadd.html" th:href="@{venue/venueadd()}" class="btn btn-sm btn-success">Add New Venue</a>
                     <!-- 模态框（Modal） -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        VENUE
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
+                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                        <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                                        <!--&times;-->
+                                    <!--</button>-->
+                                    <!--<h4 class="modal-title" id="myModalLabel">-->
+                                        <!--VENUE-->
+                                    <!--</h4>-->
+                                <!--</div>-->
+                                <!--<div class="modal-body">-->
 
-                                    <form action="/venue/addVenue" class="form-horizontal" role="form" >
+                                    <!--<form action="/venue/addVenue" class="form-horizontal" role="form" >-->
 
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Venue Name</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control col-sm-6" name="name" >
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Address</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control col-sm-6" name="address"  >
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Phone number</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="phoneNumber" id="phone" >
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Price</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="price" id="price" >
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Time</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="time" >
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Venue Introduction</label>
-                                            <div class="col-sm-6">
-                                                <textarea class="form-control" name="introduction" rows="6" ></textarea>
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                        </button>
-                                        <button type="submit" class="btn btn-primary" onclick="sure()">
-                                            提交更改
-                                        </button>
-                                    </div>
-                                    </form>
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Venue Name</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<input type="text" class="form-control col-sm-6" name="name" >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Address</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<input type="text" class="form-control col-sm-6" name="address"  >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Phone number</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<input type="text" class="form-control" name="phoneNumber" id="phone" >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Price</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<input type="text" class="form-control" name="price" id="price" >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Time</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<input type="text" class="form-control" name="time" >-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-sm-2 control-label">Venue Introduction</label>-->
+                                            <!--<div class="col-sm-6">-->
+                                                <!--<textarea class="form-control" name="introduction" rows="6" ></textarea>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<br/>-->
+                                        <!--<div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭-->
+                                        <!--</button>-->
+                                        <!--<button type="submit" class="btn btn-primary" onclick="sure()">-->
+                                            <!--提交更改-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                    <!--</form>-->
 
 
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal -->
-                        </div>
-                    </div>
+                                <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                            <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
             <br/>
@@ -204,12 +204,12 @@
                             </tr>
                             </thead>
                             <tbody id="tbody-categoris">
-                            <tr th:each="ve: ${v_list}">
-                                <td th:text="${ve.id}"></td>
-                                <td th:text="${ve.name}"></td>
-                                <td th:text="${ve.address}"></td>
-                                <td th:text="${ve.cost}"></td>
-                                <td th:text="${ve.phoneNumber}"></td>
+                            <tr th:each="v: ${v_list}">
+                                <td th:text="${v.id}"></td>
+                                <td th:text="${v.name}"></td>
+                                <td th:text="${v.address}"></td>
+                                <td th:text="${v.cost}"></td>
+                                <td th:text="${v.phoneNumber}"></td>
                                 <td>
                                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
                                         <!-- 模态框（Modal） -->
