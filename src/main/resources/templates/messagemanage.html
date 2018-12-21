@@ -55,7 +55,7 @@
             <ul class="nav" id="main-menu" th:each="ma: ${m}">
                 <li>
                     <div class="user-img-div">
-                        <img th:src="/img/user.png" src="../static/img/user.png" class="img-thumbnail" />
+                        <img th:src="@{/img/user.png}" src="../static/img/user.png" class="img-thumbnail" />
 
                         <div class="inner-text" >
                             Welcome, <br />
@@ -184,19 +184,18 @@
 </div>
 <!-- /. FOOTER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-<!-- JQUERY SCRIPTS -->
-<script src="../static/js/jquery-1.10.2.js" th:src="/js/jquery-1.10.2.js"></script>
+<script src="../static/js/jquery-1.10.2.js" th:href="@{/js/jquery-1.10.2.js}"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<script src="../static/js/bootstrap.js" th:src="/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
 <!-- PAGE LEVEL SCRIPTS -->
-<script src="../static/js/jquery.prettyPhoto.js" th:src="/js/jquery.prettyPhoto.js"></script>
-<script src="../static/js/jquery.mixitup.min.js" th:src="/js/jquery.mixitup.min.js"></script>
+<script src="../static/js/jquery.prettyPhoto.js" th:href="@{/js/jquery.prettyPhoto.js}"></script>
+<script src="../static/js/jquery.mixitup.min.js" th:href="@{/js/jquery.mixitup.min.js}"></script>
 <!-- METISMENU SCRIPTS -->
-<script src="../static/js/jquery.metisMenu.js" th:src="/js/jquery.metisMenu.js"></script>
+<script src="../static/js/jquery.metisMenu.js" th:href="@{/js/jquery.metisMenu.js}"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="../static/js/custom.js" th:src="/js/custom.js"></script>
+<script src="../static/js/custom.js" th:href="@{/js/custom.js}"></script>
 <!-- CUSTOM Gallery Call SCRIPTS -->
-<script src="../static/js/galleryCustom.js" th:src="/js/galleryCustom.js"></script>
+<script src="../static/js/galleryCustom.js" th:href="@{/js/galleryCustom.js}"></script>
 
 
 </body>

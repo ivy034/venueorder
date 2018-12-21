@@ -28,7 +28,7 @@
 
     <!-- -->
     <script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
-    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery.min.js" th:href="@{/js/jquery.min.js}"></script>
     <script>$(document).ready(function(c) {
         $('.alert-close').on('click', function(c){
             $('.message').fadeOut('slow', function(c){
