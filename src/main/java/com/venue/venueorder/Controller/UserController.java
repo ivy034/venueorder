@@ -1,5 +1,7 @@
  package com.venue.venueorder.Controller;
 
+import com.venue.venueorder.DO.Manager;
+import com.venue.venueorder.Service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ManagerService managerService;
 
     @GetMapping("/userList")
     public String userList(Model m){
@@ -117,6 +121,18 @@ public class UserController {
         }
         return "注册失败，该用户名已被占用！";
     }
+
+    /*查看用户列表*/
+     @GetMapping("/userList")
+     public  String userList(@RequestParam("managerId")Integer managerId,Model m)
+     {
+         List<User> userList=userService.findAllUser();
+         Manager manager=managerService.findOne(managerId);
+         m.addAttribute("m",manager);
+         return "usermanage";
+     }
+
+
 // 条件查询
 
     /**
@@ -133,6 +149,14 @@ public class UserController {
             return "没找到符合要求的用户";
         }
     }
+    /*跳转到修改信息*/
+     @GetMapping("/formEdit")
+     public String formEdit(@RequestParam("id")Integer id,Model m)
+     {
+         User user=userService.findOne(id);
+         m.addAttribute("u",user);
+         return "formedit";
+     }
 
     /*修改用户信息*/
     @GetMapping("/updateUser")

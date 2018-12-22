@@ -64,7 +64,14 @@ public class MessageController {
         return "redirect:/message/MessageList";
 
     }
-
+    /*我要留言*/
+    @GetMapping("/messageEdit")
+    public String messageEdit(@RequestParam("userId")Integer userId,Model m)
+    {
+        User user=userService.findOne(userId);
+        m.addAttribute("u", user);
+        return "messageedit";
+    }
     /**
      * 添加留言
      *

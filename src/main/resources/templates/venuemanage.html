@@ -34,7 +34,7 @@
 </head>
 
 <body>
-<div id="wrapper">
+<div id="wrapper"th:each="m: ${m}">
     <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -43,13 +43,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Venue Order</a>
+            <a class="navbar-brand" href="index.html"th:href="@{/manager/index(managerId=${m.id})}"> Venue Order</a>
         </div>
 
         <div class="header-right">
 
-            <a href="messagemanage.html" th:href="@{/message/MessageList}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="messagemanage.html" th:href="@{/message/MessageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginAdmin.html" th:href="@{/manager/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -57,7 +57,7 @@
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
-        <div class="sidebar-collapse" th:each="m: ${m}">
+        <div class="sidebar-collapse" >
             <ul class="nav" id="main-menu">
                 <li>
                     <div class="user-img-div">
@@ -76,24 +76,24 @@
 
 
                 <li>
-                    <a th:href="@{/manager/index}" href="index-admin.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    <a th:href="@{/manager/index(managerId=${m.id})}" href="index-admin.html"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="usermanage.html" th:href="@{/user/userList}" ><i class="fa fa-edit "></i>User Management</a>
-                </li>
-
-                <li>
-                    <a class="active-menu" href="venuemanage.html" th:href="@{/venue/venueList}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                    <a href="usermanage.html" th:href="@{/user/userList(managerId=${m.id})}" ><i class="fa fa-edit "></i>User Management</a>
                 </li>
 
                 <li>
-                    <a href="ordermanage.html" th:href="@{/order/orderList}" ><i class="fa fa-square-o "></i>Order Management</a>
+                    <a href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                </li>
+
+                <li>
+                    <a href="ordermanage.html" th:href="@{/order/orderList(managerId=${m.id})}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
-                    <a href="newsmanage.html" th:href="@{/news/newsList}" ><i class="fa fa-coffee "></i>News Management</a>
+                    <a class="active-menu" href="newsmanage.html" th:href="@{/news/newsList(managerId=${m.id})}" ><i class="fa fa-coffee "></i>News Management</a>
                 </li>
                 <li>
-                    <a href="messagemanage.html" th:href="@{/message/messageList}" ><i class="fa fa-edit "></i>Message Management</a>
+                    <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" ><i class="fa fa-edit "></i>Message Management</a>
                 </li>
             </ul>
 
