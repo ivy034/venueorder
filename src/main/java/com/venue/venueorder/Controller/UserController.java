@@ -25,13 +25,6 @@ public class UserController {
     @Autowired
     private ManagerService managerService;
 
-    @GetMapping("/userList")
-    public String userList(Model m){
-        List<User> userList = userService.findAllUser();
-        m.addAttribute("u_list", userList);
-        return "usermanage";
-    }
-
     /*进入用户登录界面*/
     @GetMapping("/login")
     public String loginUser(){
@@ -94,13 +87,19 @@ public class UserController {
      * @return
      */
     @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam("id")Integer id) {
+    public String deleteUser(@RequestParam("managerId")Integer managerId,@RequestParam("id")Integer id,RedirectAttributes redirectAttributes) {
         User user = userService.findOne(id);
         userService.deleteUserById(id);
+        redirectAttributes.addAttribute("managerId",managerId);
         return "redirect:/user/userList";
 
     }
-
+    /*跳转注册页面*/
+     @GetMapping("register")
+     public String register()
+     {
+         return "register";
+     }
     /**
      * 注册用户
      *
@@ -108,18 +107,19 @@ public class UserController {
      * @param password
      * @return
      */
-    @GetMapping("/register")
-    public String register(@RequestParam("name") String name,@RequestParam("password") String password) {
+    @ResponseBody
+    @GetMapping("/sureRegister")
+    public Object sureRegister(@RequestParam("name") String name,@RequestParam("password") String password) {
 
         List<User> tempUser = userService.findByName(name);
-        if(tempUser==null)
+        if(tempUser.size()==0)
         {   User user=new User();
-            user.setPhoneNumber(name);
+            user.setName(name);
             user.setPassword(password);
             User resultUser = userService.createUser(user);
             return "注册成功！";
         }
-        return "注册失败，该用户名已被占用！";
+        else return "注册失败，该用户名已被占用！";
     }
 
     /*查看用户列表*/
@@ -129,6 +129,7 @@ public class UserController {
          List<User> userList=userService.findAllUser();
          Manager manager=managerService.findOne(managerId);
          m.addAttribute("m",manager);
+         m.addAttribute("u_list",userList);
          return "usermanage";
      }
 
@@ -162,7 +163,7 @@ public class UserController {
     @GetMapping("/updateUser")
     public String changePassword(@RequestParam("id") Integer id,
                                  @RequestParam("name") String name,@RequestParam("sex")String sex,@RequestParam("phoneNumber")String phoneNumber,
-                                 @RequestParam("email")String email,@RequestParam("selfIntro")String selfIntro) {
+                                 @RequestParam("email")String email,@RequestParam("selfIntro")String selfIntro,RedirectAttributes redirectAttributes) {
         User user = userService.findOne(id);
         user.setName(name);
         user.setPhoneNumber(phoneNumber);
@@ -170,8 +171,7 @@ public class UserController {
         user.setSex(sex);
         user.setSelfIntro(selfIntro);
         userService.update(user);
-        return "form";
+        redirectAttributes.addAttribute("userId",user.getId());
+        return "redirect:/user/myInfo";
     }
-
-
 }

@@ -115,7 +115,7 @@
                                 <td th:text="${n.author}"></td>
                                 <td>
 
-                                    <a class="btn btn-default btn-md" href="newsdetail.html" th:href="@{/news/findById(id=${n.id})}">查看详情</a>
+                                    <a class="btn btn-default btn-md" href="newsdetail.html" th:href="@{/news/findById(userId=${us.id},id=${n.id})}">查看详情</a>
                                     <!-- 模态框（Modal） -->
                                     <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
                                         <!--<div class="modal-dialog">-->

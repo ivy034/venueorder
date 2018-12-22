@@ -88,8 +88,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/addOrder")
-    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId ) {
-
+    public String addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId,RedirectAttributes redirectAttributes) {
         Order tempOrder = new Order();
         tempOrder.setUserId(userId);
         tempOrder.setVenueId(venueId);
@@ -99,8 +98,10 @@ public class OrderController {
         tempOrder.setCreateTime(new Timestamp(d.getTime()));
         tempOrder.setVenueName(venueName);
         tempOrder.setStatus("未审核");
-        tempOrder.setCost(orderService.findOne(venueId).getCost());
+        tempOrder.setCost(tempVenue.getCost());
+        redirectAttributes.addAttribute("userId",userId);
         Order resultOrder = orderService.createOrder(tempOrder);
+        return "redirect:/venue/myVenueList";
     }
 // 条件查询
 
@@ -121,7 +122,7 @@ public class OrderController {
 
    /*通过订单*/
   @GetMapping("/agreeOrderStatus")
-  public String agreeOrderStatus(@RequestParam("mangaerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
+  public String agreeOrderStatus(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
       Order order = orderService.findOne(id);
       order.setStatus("已通过");
       orderService.update(order);
@@ -131,7 +132,7 @@ public class OrderController {
 
   /*拒绝订单*/
   @GetMapping("/refuOrderStatus")
-  public String changePassword(@RequestParam("mangaerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
+  public String changePassword(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
       Order order = orderService.findOne(id);
       order.setStatus("已拒绝");
       orderService.update(order);

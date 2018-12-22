@@ -43,13 +43,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"th:href="@{/manager/index(managerId=${m.id})}"> Venue Order</a>
+            <a class="navbar-brand" href="index.html" th:href="@{/manager/index(managerId=${m.id})}"> Venue Order</a>
         </div>
 
         <div class="header-right">
 
-            <a href="messagemanage.html" th:href="@{/message/MessageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index-admin.html" th:href="@{/manager/index(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginAdmin.html" th:href="@{/manager/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -117,7 +117,13 @@
                         </div>
                         <div class="panel-body form-horizontal">
                                                     <form action="/news/addNews" class="form-horizontal" role="form" >
-
+                                                       <br/>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Admin ID</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" name="managerId" class="form-control col-sm-6">
+                                                            </div>
+                                                        </div>
                                                         <br/>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">Title</label>

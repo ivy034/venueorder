@@ -48,8 +48,8 @@
 
         <div class="header-right">
 
-            <a href="messagemanage.html" th:href="@{/message/MessageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index-admin.html" th:href="@{/manager/index(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginAdmin.html" th:href="@{/manager/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -83,14 +83,14 @@
                 </li>
 
                 <li>
-                    <a href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                    <a class="active-menu" href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" ><i class="fa fa-anchor "></i>Venue Management</a>
                 </li>
 
                 <li>
                     <a href="ordermanage.html" th:href="@{/order/orderList(managerId=${m.id})}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="newsmanage.html" th:href="@{/news/newsList(managerId=${m.id})}" ><i class="fa fa-coffee "></i>News Management</a>
+                    <a href="newsmanage.html" th:href="@{/news/newsList(managerId=${m.id})}" ><i class="fa fa-coffee "></i>News Management</a>
                 </li>
                 <li>
                     <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" ><i class="fa fa-edit "></i>Message Management</a>
@@ -121,6 +121,20 @@
                                     <form action="/venue/updateVenue" class="form-horizontal" role="form" >
                                         <br/>
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Admin ID</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control col-sm-6" name="managerId" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Venue ID</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control col-sm-6" name="id" >
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Venue Name</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control col-sm-6" name="name" >
@@ -144,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Price</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="price" id="price" >
+                                                <input type="text" class="form-control" name="cost" id="price" >
                                             </div>
                                         </div>
                                         <br/>

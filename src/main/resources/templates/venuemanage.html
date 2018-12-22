@@ -48,8 +48,8 @@
 
         <div class="header-right">
 
-            <a href="messagemanage.html" th:href="@{/message/MessageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="index-admin.html" th:href="@{/manager/signInAsAdmin(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
+            <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="index-admin.html" th:href="@{/manager/index(managerId=${m.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginAdmin.html" th:href="@{/manager/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
 
@@ -83,14 +83,14 @@
                 </li>
 
                 <li>
-                    <a href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" ><i class="fa fa-anchor "></i>Venue Management</a>
+                    <a class="active-menu" href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" ><i class="fa fa-anchor "></i>Venue Management</a>
                 </li>
 
                 <li>
                     <a href="ordermanage.html" th:href="@{/order/orderList(managerId=${m.id})}" ><i class="fa fa-square-o "></i>Order Management</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="newsmanage.html" th:href="@{/news/newsList(managerId=${m.id})}" ><i class="fa fa-coffee "></i>News Management</a>
+                    <a href="newsmanage.html" th:href="@{/news/newsList(managerId=${m.id})}" ><i class="fa fa-coffee "></i>News Management</a>
                 </li>
                 <li>
                     <a href="messagemanage.html" th:href="@{/message/messageList(managerId=${m.id})}" ><i class="fa fa-edit "></i>Message Management</a>
@@ -201,6 +201,7 @@
                                 <th>Address</th>
                                 <th>Price</th>
                                 <th>Phone</th>
+                                <th>Available Time</th>
                                 <th>To Do</th>
                             </tr>
                             </thead>
@@ -211,8 +212,9 @@
                                 <td th:text="${v.address}"></td>
                                 <td th:text="${v.cost}"></td>
                                 <td th:text="${v.phoneNumber}"></td>
+                                <td th:text="${v.time}"></td>
                                 <td>
-                                        <a href="venueupdate.html" th:href="@{/venue/updateVenue(managerId=${m.id})}" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="venueupdate.html" th:href="@{/venue/venueUpdate(managerId=${m.id})}" class="btn btn-sm btn-primary">Edit</a>
                                         <!-- 模态框（Modal） -->
                                         <!--<div class="modal fade" id="mytModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
                                             <!--<div class="modal-dialog">-->
@@ -285,7 +287,7 @@
                                                 <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
                                             <!--</div>-->
                                         <!--</div>-->
-                                    <a th:href="@{/venue/deleteVenue(id=${v.id})}"  class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</a>
+                                    <a th:href="@{/venue/deleteVenue(managerId=${m.id},id=${v.id})}"  class="btn btn-sm btn-danger"  onclick="deletesure()">Delete</a>
                                 </td>
                             </tr>
                             </tbody>

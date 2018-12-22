@@ -9,6 +9,7 @@
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <!-- FONTAWESOME STYLES-->
     <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}"/>
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <!--CUSTOM BASIC STYLES-->
     <link href="../static/css/basic.css" rel="stylesheet" th:href="@{/css/basic.css}"/>
     <!--CUSTOM MAIN STYLES-->
@@ -236,6 +237,14 @@
                                 <!--</div>-->
                                 </div></div>
                             <div class="row" th:each="us: ${u}">
+                                <div class="form-group" >
+                                    <label class="col-sm-2 control-label">ID</label>
+                                    <div class="col-sm-9">
+                                        <p th:text="${us.id}"></p>
+                                    </div>
+                                </div>
+
+                                <br/>
                             <div class="form-group" >
                                 <label class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-9">

@@ -31,11 +31,11 @@ public class MessageController {
     private ManagerService managerService;
 
     /*管理员查看留言列表*/
-    @GetMapping("/MessageList")
+    @GetMapping("/messageList")
     public String MessageList(@RequestParam("managerId")Integer managerId, Model m){
         List<Message> messageList = messageService.findAllMessage();
         Manager manager=managerService.findOne(managerId);
-        m.addAttribute("m",managerId);
+        m.addAttribute("m",manager);
         m.addAttribute("m_list", messageList);
         return "messagemanage";
     }
@@ -61,7 +61,7 @@ public class MessageController {
         Message message = messageService.findOne(id);
         messageService.deleteMessageById(id);
         redirectAttributes.addAttribute("managerId",managerId);
-        return "redirect:/message/MessageList";
+        return "redirect:/message/messageList";
 
     }
     /*我要留言*/
@@ -79,13 +79,14 @@ public class MessageController {
      * @return
      */
     @GetMapping("/addMessage")
-    public String addMessage(@RequestParam("userId")Integer userId,@RequestParam("content") String content,@RequestParam("name")String author,Model model,RedirectAttributes redirectAttributes) {
+    public String addMessage(@RequestParam("userId")Integer userId,@RequestParam("content") String content,Model model,RedirectAttributes redirectAttributes) {
 
         Message tempMessage = new Message();
         tempMessage.setContent(content);
         java.util.Date d=new java.util.Date();
         tempMessage.setAnnounceTime(new Timestamp(d.getTime()));
-        tempMessage.setAuthor(author);
+        User tempUser=userService.findOne(userId);
+        tempMessage.setAuthor(tempUser.getName());
         tempMessage.setStatus("待审核");
         redirectAttributes.addAttribute("userId",userId);
         Message resultMessage = messageService.createMessage(tempMessage);

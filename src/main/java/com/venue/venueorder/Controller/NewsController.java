@@ -31,7 +31,7 @@ public class NewsController {
     private ManagerService managerService;
 
     /*管理员查看新闻列表*/
-    @GetMapping("/NewsList")
+    @GetMapping("/newsList")
     public String managerNewsList(@RequestParam("managerId")Integer managerId,Model m){
         List<News> newsList = newsService.findAllNews();
         Manager manager=managerService.findOne(managerId);
@@ -73,7 +73,7 @@ public class NewsController {
     public String  deleteNews(@RequestParam("managerId")Integer managerId, @RequestParam("id")Integer id, RedirectAttributes redirectAttributes) {
         newsService.deleteNewsById(id);
         redirectAttributes.addAttribute("managerId",managerId);
-        return "redirect:/news/NewsList";
+        return "redirect:/news/newsList";
     }
 
 
@@ -107,7 +107,7 @@ public class NewsController {
         tempNews.setAnnounceTime(new Timestamp(d.getTime()));
         News resultNews=newsService.createNews(tempNews);
         redirectAttributes.addAttribute("managerId",managerId);
-        return "redirect:/news/NewsList";
+        return "redirect:/news/newsList";
     }
     /**
      * 添加新闻
@@ -117,17 +117,18 @@ public class NewsController {
      * @return
      */
     @GetMapping("/addNews")
-    public String addNews(@RequestParam("managerId")Integer managerId, @RequestParam("title") String title, @RequestParam("content") String content,@RequestParam("name")String author,RedirectAttributes redirectAttributes) {
+    public String addNews(@RequestParam("managerId")Integer managerId, @RequestParam("title") String title, @RequestParam("content") String content,RedirectAttributes redirectAttributes) {
 
         News tempNews = new News();
         tempNews.setTitle(title);
         tempNews.setContent(content);
-        tempNews.setAuthor(author);
+        Manager manager=managerService.findOne(managerId);
+        tempNews.setAuthor(manager.getName());
         java.util.Date d=new java.util.Date();
         tempNews.setAnnounceTime(new Timestamp(d.getTime()));
         News resultNews = newsService.createNews(tempNews);
         redirectAttributes.addAttribute("managerId",managerId);
-        return "redirect:/news/NewsList";
+        return "redirect:/news/newsList";
     }
 //
 

@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<div id="wrapper"th:each="us: ${u}">
+<div id="wrapper" th:each="us: ${u}">
     <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -47,7 +47,6 @@
             <a href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
             <a href="index.html" th:href="@{/user/myInfo(userId=${us.id})}" class="btn btn-primary" title="Home"><i class="fa fa-home fa-2x"></i></a>
             <a href="loginUser.html" th:href="@{/user/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
 
         </div>
     </nav>
@@ -74,24 +73,23 @@
 
 
                 <li>
-                    <a  href="index.html" th:href="@{/user/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
-                </li>
-
-                <li>
-                    <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                    <a href="index.html" th:href="@{/user/index(userId=${us.id})}"><i class="fa fa-dashboard "></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="venue.html" th:href="@{/venue/myVenueList}"><i class="fa fa-anchor "></i>The Venue</a>
+                    <a href="form.html" th:href="@{/user/myInfo(userId=${us.id})}" ><i class="fa fa-desktop "></i>My Information </a>
+                </li>
+                <li>
+                    <a href="venue.html" th:href="@{/venue/myVenueList(userId=${us.id})}"><i class="fa fa-anchor "></i>The Venue</a>
                 </li>
 
                 <li >
                     <a href="order.html" th:href="@{/order/myOrderList(userId=${us.id})}"><i class="fa fa-square-o "></i>My Order</a>
                 </li>
                 <li>
-                    <a href="news.html" th:href="@{/news/myNewsList}"><i class="fa fa-coffee "></i>News Center</a>
+                    <a href="news.html" th:href="@{/news/myNewsList(userId=${us.id})}"><i class="fa fa-coffee "></i>News Center</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="message.html" th:href="@{/message/myMessageList}"><i class="fa fa-edit "></i>Message Board</a>
+                    <a class="active-menu" href="message.html" th:href="@{/message/myMessageList(userId=${us.id})}"><i class="fa fa-edit "></i>Message Board</a>
                 </li>
             </ul>
 
@@ -151,7 +149,15 @@
                             MESSAGE
                         </div>
                         <div class="panel-body form-horizontal">
+
                             <form action="/message/addMessage">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">User ID</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required="true" class="form-control" name="userId">
+                                    </div>
+                                </div>
+                                <br/>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Content</label>
                                     <div class="col-sm-6">

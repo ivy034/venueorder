@@ -103,7 +103,7 @@ public class VenueController {
      */
 
     @RequestMapping(value = "/updateVenue")
-    public String addVenue(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
+    public String updateVenue(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
                            @RequestParam("cost") Integer cost,@RequestParam("phoneNumber")String phoneNumber,RedirectAttributes redirectAttributes) {
         Venue tempVenue = venueService.findOne(id);
         tempVenue.setAddress(address);

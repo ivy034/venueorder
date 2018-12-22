@@ -152,6 +152,13 @@
                         <div class="panel-body form-horizontal">
                             <form action="/user/updateUser">
                                 <br/>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">User ID</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required="true" class="form-control col-sm-6" name="id" >
+                                    </div>
+                                </div>
+                                <br/>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-6">
@@ -184,11 +191,9 @@
                                 <br/>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Email</label>
-                                    <form name="myForm" >
                                         <div class="col-sm-6">
                                             <input type="email" required="true" class="form-control" name="email" id="email" onblur="isEmail()" >
                                         </div>
-                                    </form>
                                 </div>
                                 <br/>
                                 <div class="form-group">

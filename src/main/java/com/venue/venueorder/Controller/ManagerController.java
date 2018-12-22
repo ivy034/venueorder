@@ -26,7 +26,7 @@ public class ManagerController {
     }
     
     /*管理员登录*/
-    @GetMapping("/signInAsAdmin")
+    @GetMapping("/signIn")
     public String signIn(@RequestParam("name") String name,
                          @RequestParam("password") String password, Model model) {
         Manager manager = managerService.findByNameAndPassword(name, password);
