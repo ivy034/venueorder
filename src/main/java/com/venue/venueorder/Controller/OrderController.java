@@ -1,8 +1,10 @@
 package com.venue.venueorder.Controller;
 
+import com.venue.venueorder.DO.Manager;
 import com.venue.venueorder.DO.Order;
 import com.venue.venueorder.DO.User;
 import com.venue.venueorder.DO.Venue;
+import com.venue.venueorder.Service.ManagerService;
 import com.venue.venueorder.Service.UserService;
 import com.venue.venueorder.Service.VenueService;
 import com.venue.venueorder.Service.impl.OrderServiceImpl;
@@ -31,6 +33,8 @@ public class OrderController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ManagerService managerService;
 
     /*用户查看我的订单*/
 //    @ResponseBody
@@ -47,9 +51,11 @@ public class OrderController {
 
     /*管理员查看所有订单*/
     @GetMapping("/orderList")
-    public String orderList(@RequestParam("userId")Integer userId ,Model m){
+    public String orderList(@RequestParam("managerId")Integer managerId ,Model m){
         List<Order> orderList = orderService.findAllOrder();
+        Manager manager=managerService.findOne(managerId);
         m.addAttribute("o_list", orderList);
+        m.addAttribute("m",manager);
         return "ordermanage";
     }
 
@@ -68,8 +74,9 @@ public class OrderController {
 
 
     @GetMapping("/deleteOrder")
-    public String deleteOrder(@RequestParam("id") Integer id) {
+    public String deleteOrder(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
         orderService.deleteOrderById(id);
+        redirectAttributes.addAttribute("managerId",managerId);
         return "redirect:/order/orderList";
     }
 
@@ -81,7 +88,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/addOrder")
-    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId ,  Model model) {
+    public void addOrder(@RequestParam("userId") Integer userId, @RequestParam("venueId") Integer venueId ) {
 
         Order tempOrder = new Order();
         tempOrder.setUserId(userId);
@@ -94,7 +101,6 @@ public class OrderController {
         tempOrder.setStatus("未审核");
         tempOrder.setCost(orderService.findOne(venueId).getCost());
         Order resultOrder = orderService.createOrder(tempOrder);
-        model.addAttribute("o", resultOrder);//resultOrder传到o,
     }
 // 条件查询
 
@@ -115,19 +121,21 @@ public class OrderController {
 
    /*通过订单*/
   @GetMapping("/agreeOrderStatus")
-  public String agreeOrderStatus(@RequestParam("id") Integer id,Model m) {
+  public String agreeOrderStatus(@RequestParam("mangaerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
       Order order = orderService.findOne(id);
       order.setStatus("已通过");
       orderService.update(order);
+      redirectAttributes.addAttribute("managerId",managerId);
       return "redirect:/order/orderList";
   }
 
   /*拒绝订单*/
   @GetMapping("/refuOrderStatus")
-  public String changePassword(@RequestParam("id") Integer id) {
+  public String changePassword(@RequestParam("mangaerId")Integer managerId,@RequestParam("id") Integer id,RedirectAttributes redirectAttributes) {
       Order order = orderService.findOne(id);
-      order.setStatus("未通过");
+      order.setStatus("已拒绝");
       orderService.update(order);
+      redirectAttributes.addAttribute("managerId",managerId);
       return "redirect:/order/orderList";
   }
 

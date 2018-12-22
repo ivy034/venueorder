@@ -35,7 +35,9 @@ public class ManagerController {
     }
     /*返回首页*/
     @GetMapping("/index")
-    public String indexadmin(){
+    public String indexadmin(@RequestParam("managerId")Integer managerId,Model m){
+        Manager manager=managerService.findOne(managerId);
+        m.addAttribute("m",manager);
         return  "index-admin";
     }
 

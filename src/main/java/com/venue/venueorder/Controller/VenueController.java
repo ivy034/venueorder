@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class VenueController {
     private ManagerService managerService;
 
 
-    @GetMapping("/venueList")
-    public String venueList(Model m){
-        List<Venue> venueList = venueService.findAllVenue();
-        m.addAttribute("v_list", venueList);
 
+    @GetMapping("/venueList")
+    public String venueList(@RequestParam("managerId")Integer managerId, Model m){
+        List<Venue> venueList = venueService.findAllVenue();
+        Manager manager= managerService.findOne(managerId);
+        m.addAttribute("v_list", venueList);
+        m.addAttribute("m",manager);
         return "venuemanage";
     }
 
@@ -50,8 +53,9 @@ public class VenueController {
      * @return
      */
     @RequestMapping(value = "/deleteVenue")
-    public String deleteVenue(@RequestParam("id")Integer id) {
+    public String deleteVenue(@RequestParam("managerId")Integer managerId, @RequestParam("id")Integer id, RedirectAttributes redirectAttributes) {
         venueService.deleteVenueById(id);
+        redirectAttributes.addAttribute("managerId",managerId);
         return "redirect:/venue/venueList";
     }
 
@@ -75,8 +79,8 @@ public class VenueController {
 
     /*确认添加场馆*/
     @GetMapping("/addVenue")
-    public String addVenue(@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
-                           @RequestParam("cost")Integer cost,@RequestParam("address")String address,Model m)
+    public String addVenue(@RequestParam("managerId")Integer managerId,@RequestParam("time")String time,@RequestParam("name")String name,@RequestParam("phoneNumber")String phoneNumber,
+                           @RequestParam("cost")Integer cost,@RequestParam("address")String address,RedirectAttributes redirectAttributes)
     {
         Venue tempVenue = new Venue();
         tempVenue.setTime(time);
@@ -85,6 +89,7 @@ public class VenueController {
         tempVenue.setCost(cost);
         tempVenue.setPhoneNumber(phoneNumber);
         Venue resultVenue = venueService.createVenue(tempVenue);
+        redirectAttributes.addAttribute("managerId",managerId);
         return "redirect:/venue/venueList";
     }
 
@@ -98,8 +103,8 @@ public class VenueController {
      */
 
     @RequestMapping(value = "/updateVenue")
-    public String addVenue(@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
-                           @RequestParam("cost") Integer cost,@RequestParam("phoneNumber")String phoneNumber) {
+    public String addVenue(@RequestParam("managerId")Integer managerId,@RequestParam("id") Integer id,@RequestParam("address") String address, @RequestParam("name") String name,@RequestParam("time") String time,
+                           @RequestParam("cost") Integer cost,@RequestParam("phoneNumber")String phoneNumber,RedirectAttributes redirectAttributes) {
         Venue tempVenue = venueService.findOne(id);
         tempVenue.setAddress(address);
         tempVenue.setCost(cost);
@@ -107,6 +112,7 @@ public class VenueController {
         tempVenue.setName(name);
         tempVenue.setPhoneNumber(phoneNumber);
         Venue resultVenue = venueService.createVenue(tempVenue);
+        redirectAttributes.addAttribute("managerId",managerId);
         return "redirect:/venue/venueList";
     }
 
