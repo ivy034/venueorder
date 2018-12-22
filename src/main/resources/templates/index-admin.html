@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="main-box mb-dull">
-                        <a href="usermanage.html" th:href="@{/user/userList}" >
+                        <a href="usermanage.html" th:href="@{/user/userList(managerId=${m.id})}" >
                             <i class="fa fa-yelp fa-5x"></i>
                             <h5>User Managing</h5>
                         </a>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="main-box mb-red">
-                        <a href="venuemanage.html" th:href="@{/venue/venueList}" >
+                        <a href="venuemanage.html" th:href="@{/venue/venueList(managerId=${m.id})}" >
                             <i class="fa fa-anchor fa-5x"></i>
                             <h5>Venue Modifying</h5>
                         </a>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="main-box mb-pink">
-                        <a href="ordermanage.html" th:href="@{/order/orderList}" >
+                        <a href="ordermanage.html" th:href="@{/order/orderList(managerId=${m.id})}" >
                             <i class="fa fa-square-o fa-5x"></i>
                             <h5>Order Examining</h5>
                         </a>

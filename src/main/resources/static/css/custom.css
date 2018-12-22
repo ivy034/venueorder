@@ -239,7 +239,7 @@ ul#filters {
 		-moz-box-sizing: border-box;
 		-o-box-sizing: border-box;
 		width: 100%;		
-        opacity:.2;
+        opacity:1;
 		float:left;
 		overflow:hidden;
 	}

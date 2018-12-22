@@ -99,7 +99,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="main-box mb-red">
-                            <a href="form.html" th:href="@{/user/myInfo(id=${us.id})}">
+                            <a href="form.html" th:href="@{/user/myInfo(userId=${us.id})}">
                                 <i class="fa fa-desktop fa-5x"></i>
                                 <h5>Modify My Profile</h5>
                             </a>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="main-box mb-pink">
-                            <a href="venue.html" th:href="@{/venue/myVenueList}">
+                            <a href="venue.html" th:href="@{/venue/myVenueList(userId=${us.id})}">
                                 <i class="fa fa-dollar fa-5x"></i>
                                 <h5>Booking Now</h5>
                             </a>
